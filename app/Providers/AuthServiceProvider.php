@@ -2,18 +2,25 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Repository;
+use App\Models\User;
+use App\Policies\CategoryPolicy;
+use App\Policies\RepositoryPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
      * The policy mappings for the application.
      *
-     * @var array<class-string, class-string>
+     * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Category::class => CategoryPolicy::class,
+        Repository::class => RepositoryPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**
@@ -21,10 +28,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         $this->registerPolicies();
-
-        //
     }
 }

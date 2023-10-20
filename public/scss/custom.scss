@@ -1,0 +1,26 @@
+/*!
+* Version: 1.2.0
+* Template: Example Project
+* Author: iqonic.design
+* Design and Developed by: iqonic.design
+* NOTE: This file contains the styling for Template.
+*
+*/
+
+// Configuration
+@import "./bootstrap/functions";
+// Variables
+@import "./app-design-system/variable";
+@import "./app-design-system/variables/index";
+@import "./bootstrap/variables";
+
+@import "./bootstrap/mixins";
+
+@import "./app-design-system/helper/functions";
+@import "./app-design-system/helper/mixins";
+@import "./app-design-system/helper/reboot";
+
+@import "./custom/auth/authentication";
+@import "./custom/kanban/kanban";
+@import "./custom/pricing/pricing";
+@import "./custom/ui-kit/ui-kit";

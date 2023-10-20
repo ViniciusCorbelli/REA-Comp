@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,8 +12,12 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        // \App\Models\User::factory(10)->create();
+    public function run() {
+        $this->call([
+            UserTableSeeder::class,
+        ]);
+        \App\Models\User::factory(40)->create();
+        \App\Models\UserProfile::factory(43)->create();
+        \App\Models\Category::factory(50)->create();
     }
 }

@@ -11,7 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+// mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
+//     require('postcss-import'),
+//     require('tailwindcss'),
+//     require('autoprefixer'),
+// ]);
+mix.js('resources/js/libs.js', 'public/js/libs.min.js')
+    .sass('resources/sass/libs.scss','public/css/libs.min.css')
+    .sass('public/scss/app.scss', 'public/css')
+    .sass('public/scss/custom.scss', 'public/css')
+    .sass('public/scss/dark.scss', 'public/css')
+    .sass('public/scss/rtl.scss', 'public/css')
+    .sass('public/scss/customizer.scss', 'public/css')
+    .options({
+        processCssUrls: false
+    });
