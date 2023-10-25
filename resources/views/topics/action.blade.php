@@ -1,6 +1,6 @@
-<div class="flex align-items-center list-categories-action">
-    <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" title="Edit Category"
-        href="{{ route('categories.edit', $id) }}">
+<div class="flex align-items-center list-topics-action">
+    <a class="btn btn-sm btn-icon btn-warning" data-bs-toggle="tooltip" title="Edit Topic"
+        href="{{ route('topics.edit', $id) }}">
         <span class="btn-inner">
             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -15,11 +15,11 @@
         </span>
     </a>
     <?php
-    $message = __('global-message.delete_alert', ['form' => __('categories.title')]);
+    $message = __('global-message.delete_alert', ['form' => __('topics.title')]);
     ?>
     <a class="btn btn-sm btn-icon btn-danger"
-        onclick="return confirm('{{ $message }}') ? document.getElementById('category-delete-{{ $id }}').submit() : false"
-        data-bs-toggle="tooltip" title="Delete Category" href="#">
+        onclick="return confirm('{{ $message }}') ? document.getElementById('topic-delete-{{ $id }}').submit() : false"
+        data-bs-toggle="tooltip" title="Delete Topic" href="#">
         <span class="btn-inner">
             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                 stroke="currentColor">
@@ -34,7 +34,7 @@
             </svg>
         </span>
     </a>
-    <form action="{{ route('categories.destroy', $id) }}" id="category-delete-{{ $id }}"
+    <form action="{{ route('topics.destroy', $id) }}" id="topic-delete-{{ $id }}"
         method="post">
         @method('delete')
         @csrf()

@@ -31,4 +31,6 @@ return [
     'name' => 'Name',
     'size' => 'Size',
     'loading' => 'Loading',
+    'admin' => 'Admin',
+    'file-manager' => 'File Manager',
 ];

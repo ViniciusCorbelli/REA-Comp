@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Storage;
 
-class CreateFileTable extends Migration
+class CreateScoreTable extends Migration
 {
 
     /**
@@ -14,16 +13,11 @@ class CreateFileTable extends Migration
      * @return void
      */
     public function up() {
-        Storage::deleteDirectory('repository');
-        Storage::deleteDirectory('tmp');
-
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('scores', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('file_name');
-            $table->string('mime_type')->nullable();
-            $table->string('path');
-            $table->integer('size');
+            $table->unsignedTinyInteger('score');
+            $table->foreignId('user_id')->cascade('delete');
             $table->foreignId('repository_id')->cascade('delete');
 
             $table->nullableTimestamps();
@@ -36,6 +30,6 @@ class CreateFileTable extends Migration
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('scores');
     }
 }

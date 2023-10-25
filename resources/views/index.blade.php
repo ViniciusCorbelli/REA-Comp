@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbar-2">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-start">
                         <li class="nav-item">
-                            {{ Form::select('category_id', $categories, old('category_id'), ['class' => 'form-control', 'id' => 'category_id']) }}
+                            {{ Form::select('topic_id', $topics, old('topic_id'), ['class' => 'form-control', 'id' => 'topic_id']) }}
                         </li>
                         <li class="nav-item" onclick="search()">
                             <button class="btn btn-success" style="margin-left: 10px">
@@ -54,7 +54,7 @@
             const token = '{{ csrf_token() }}';
             fetch('{{ route('search') }}?' + new URLSearchParams({
                     q: document.getElementById("search").value,
-                    category_id: document.getElementById("category_id").value,
+                    topic_id: document.getElementById("topic_id").value,
                 }), {
                     method: 'get',
                     headers: {
@@ -118,13 +118,13 @@
                                 <div class="d-flex gap-2">
                                     <a href="repository/` + repository.id +
                 `" data-bs-toggle="tooltip" class="text-body text-ellipsis short-1 fs-6" data-bs-original-title="` +
-                repository.category.name + `">` + repository.category.name + `</a><span></span>
+                repository.topic.name + `">` + repository.topic.name + `</a><span></span>
                                 </div>
                                 <div class="text show-first-lines">
                                     <p class="my-4 text-ellipsis short-1">` + repository.description + `</p>
                                 </div>
                                 <div>
-                                    <a href="repository/` + repository.id + `" class="btn btn-primary">{{ __('more') }}</a>
+                                    <a href="repository/` + repository.id + `" class="btn btn-primary">{{ __('index.more') }}</a>
                                 </div>
                             </div>
                         </div>

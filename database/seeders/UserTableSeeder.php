@@ -23,8 +23,8 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'phone_number' => '+12398190255',
                 'email_verified_at' => now(),
-                'user_type' => 'admin',
-                'status' => 'active',
+                'user_type' => User::USER_TYPE_ADMIN,
+                'status' => USER::ACTIVE,
             ],
         ];
         foreach ($users as $key => $value) {

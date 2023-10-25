@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
+use App\Models\Favority;
+use App\Models\Topic;
 use App\Models\Repository;
 use App\Models\User;
-use App\Policies\CategoryPolicy;
+use App\Policies\FavorityPolicy;
+use App\Policies\TopicPolicy;
 use App\Policies\RepositoryPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -18,7 +20,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Category::class => CategoryPolicy::class,
+        Favority::class => FavorityPolicy::class,
+        Topic::class => TopicPolicy::class,
         Repository::class => RepositoryPolicy::class,
         User::class => UserPolicy::class,
     ];

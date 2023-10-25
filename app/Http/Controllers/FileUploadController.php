@@ -17,54 +17,94 @@ class FileUploadController extends Controller {
         $receiver = new FileReceiver('file', $request, HandlerFactory::classFromRequest($request));
 
         if (!$receiver->isUploaded()) {
-            // file not uploaded
+            return [
+                'status' => false,
+            ];
         }
 
         $fileReceived = $receiver->receive();
         if ($fileReceived->isFinished()) {
             $file = $fileReceived->getFile();
-            $extension = $file->getClientOriginalExtension();
-            $fileName = $fileNameSave = str_replace('.' . $extension, '', $file->getClientOriginalName());
-            $fileNameSave .= '_' . md5(time()) . '.' . $extension;
+            $fileSize = $file->getSize();
 
-            $target_path = $id > 0 ? 'repository/' . $id : 'tmp';
-
-            $disk = Storage::disk(config('filesystems.default'));
-            $path = $disk->putFileAs($target_path, $file, $fileNameSave);
-            $media = [
-                'file_name' => $fileName,
-                'mime_type' => $extension,
-                'path' => $path,
-                'size' => $file->getSize()
-            ];
-
-            $fileMedia = ['id' => 0];
-            if ($id > 0) {
-                $media['repository_id'] = $id;
-                $fileMedia = File::create($media);
-            } else {
-                $mediasIds = Session::get(self::FILE_KEY);
-                $mediasIds[] = $media;
-                Session::put(self::FILE_KEY, $mediasIds);
+            if (!checkAllowUpload($fileSize)) {
+                unlink($file->getPathname());
+                return [
+                    'status' => false,
+                ];
             }
 
-            // delete chunked file
+            $response = $id > 0 ? $this->insertToRepository($id, $file) : $this->insertToTmp($file);
+            $fileInfo = $this->getNameFile($file);
+
             unlink($file->getPathname());
             return [
-                'file_id' => $fileMedia['id'],
-                'image' => getImage($extension),
-                'size' => formatSizeUnits($media['size']),
-                'path' => asset('storage/' . $path),
-                'relative_path' => $path,
-                'filename' => $fileName
+                'file_id' => $response['file_id'],
+                'image' => getImage($fileInfo['extension']),
+                'size' => formatSizeUnits($fileSize),
+                'path' => asset('storage/' . $response['path']),
+                'relative_path' => $response['path'],
+                'filename' => $fileInfo['fileName']
             ];
         }
 
-        // otherwise return percentage informatoin
         $handler = $fileReceived->handler();
         return [
             'done' => $handler->getPercentageDone(),
             'status' => true
+        ];
+    }
+
+    private function getNameFile($file) {
+        $extension = $file->getClientOriginalExtension();
+        $fileName = str_replace('.' . $extension, '', $file->getClientOriginalName());
+        $fileNameSave = $fileName . '_' . md5(time()) . '.' . $extension;
+
+        return [
+            'extension' => $extension,
+            'fileName' => $fileName,
+            'fileNameSave' => $fileNameSave
+        ];
+    }
+
+    private function insertToRepository($id, $file) {
+        $fileInfo = $this->getNameFile($file);
+
+        $path = Storage::disk(config('filesystems.default'))->putFileAs('repository/' . $id, $file, $fileInfo['fileNameSave']);
+        $media = [
+            'file_name' => $fileInfo['fileName'],
+            'mime_type' => $fileInfo['extension'],
+            'path' => $path,
+            'size' => $file->getSize(),
+            'repository_id' => $id
+        ];
+
+        $fileCreate = File::create($media);
+
+        return [
+            'file_id' => $fileCreate['id'],
+            'path' => $path,
+        ];
+    }
+
+    private function insertToTmp($file) {
+        $fileInfo = $this->getNameFile($file);
+
+        $path = Storage::disk(config('filesystems.default'))->putFileAs('tmp', $file, $fileInfo['fileNameSave']);
+        $media = [
+            'file_name' => $fileInfo['fileName'],
+            'mime_type' => $fileInfo['extension'],
+            'path' => $path,
+            'size' => $file->getSize()
+        ];
+
+        $mediasIds = Session::get(self::FILE_KEY);
+        $mediasIds[] = $media;
+        Session::put(self::FILE_KEY, $mediasIds);
+
+        return [
+            'file_id' => 0,
+            'path' => $path,
         ];
     }
 

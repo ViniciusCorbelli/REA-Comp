@@ -23,7 +23,7 @@ return [
     'all'=>'Todos',
     'created_on' => 'Criado em',
     'delete' => 'Deletar',
-    'used of' => 'Usado',
+    'used of' => 'Usado de',
     'items' => 'itens',
     'image' => 'Imagem',
     'video' => 'Video',
@@ -33,4 +33,6 @@ return [
     'name' => 'Nome',
     'size' => 'Tamanho',
     'loading' => 'Carregando',
+    'admin' => 'Admin',
+    'file-manager' => 'Gerenciador de arquivos',
 ];

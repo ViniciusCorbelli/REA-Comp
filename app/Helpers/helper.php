@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Auth;
+
 function removeSession($session) {
     if (\Session::has($session)) {
         \Session::forget($session);
@@ -46,4 +49,17 @@ function getImage($mime_type = 'default') {
     }
 
     return $img;
+}
+
+function checkAllowUpload($fileSize) {
+    $files = Auth::user()
+        ->repositories()
+        ->with('files')
+        ->get()
+        ->flatMap(function ($repository) {
+            return $repository->files;
+        });
+    $storageFree = Auth::user()->userProfile()->first()->storage - $files->sum('size');
+
+    return $fileSize < $storageFree;
 }

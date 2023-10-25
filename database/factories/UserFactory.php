@@ -27,15 +27,15 @@ class UserFactory extends Factory
         $status = $this->faker->numberBetween(0,2);
         switch ($status) {
             case 1:
-                $status = 'active';
+                $status = User::ACTIVE;
                 break;
 
             case 2:
-                $status = 'inactive';
+                $status = User::INACTIVE;
                 break;
 
                 default:
-                $status = 'pending';
+                $status = User::PENDING;
                 break;
         }
         return [
@@ -47,7 +47,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'phone_number' => $this->faker->phoneNumber,
-            'user_type' => 'user',
+            'user_type' => User::USER_TYPE_USER,
             'status' => $status
         ];
     }

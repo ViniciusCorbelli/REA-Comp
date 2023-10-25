@@ -49,7 +49,7 @@ class UserController extends Controller {
 
         $user->userProfile()->create($request->userProfile);
 
-        return redirect()->route('users.index')->withSuccess(__('message.msg_added', ['name' => __('users.store')]));
+        return redirect()->route('users.index')->withSuccess(__('users.store'));
     }
 
     /**
@@ -89,20 +89,12 @@ class UserController extends Controller {
         $id = $user->id;
         $user = User::with('userProfile')->findOrFail($id);
 
-        $role = Role::find($request->user_role);
-        if ($role->name === 'admin' && $user->user_type === 'admin') {
-            return redirect()->back()->with('error', 'Permission denied');
-        }
-
         $request['password'] = $request->password != '' ? bcrypt($request->password) : $user->password;
 
         $user->fill($request->all())->update();
         $user->userProfile->fill($request->userProfile)->update();
 
-        if (auth()->check()) {
-            return redirect()->route('users.index')->withSuccess(__('message.msg_updated', ['name' => __('message.user')]));
-        }
-        return redirect()->back()->withSuccess(__('message.msg_updated', ['name' => 'My Profile']));
+        return redirect()->back()->withSuccess(__('users.update'));
     }
 
     /**

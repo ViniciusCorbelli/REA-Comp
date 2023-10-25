@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class Repository extends Authenticatable implements MustVerifyEmail
+class Favority extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -18,10 +18,8 @@ class Repository extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'title',
-        'description',
-        'topic_id',
-        'user_id'
+        'user_id',
+        'repository_id',
     ];
 
     /**
@@ -40,19 +38,11 @@ class Repository extends Authenticatable implements MustVerifyEmail
     protected $casts = [
     ];
 
-    public function topic() {
-        return $this->belongsTo(Topic::class);
-    }
-
-    public function files() {
-        return $this->hasMany(File::class);
-    }
-
-    public function links() {
-        return $this->hasMany(Link::class);
+    public function reposity() {
+        return $this->hasOne(Repository::class);
     }
 
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 }

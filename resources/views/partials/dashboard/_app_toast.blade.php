@@ -3,7 +3,7 @@
     @if (Session::has('success'))
     Swal.fire({
     icon: 'success',
-    title: 'Done',
+    title: '',
     text: '{{ Session::get("success") }}',
     confirmButtonColor: "#3a57e8"
     });

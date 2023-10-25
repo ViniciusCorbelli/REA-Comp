@@ -12,18 +12,18 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
-    'title' => 'Repositorio',
+    'title' => 'REA',
     'file' => 'Arquivo',
-    'store' => 'Informações do repositório adicionadas com sucesso!',
-    'update' => 'Informações do repositório atualizadas com sucesso!',
+    'store' => 'Informações do REA adicionadas com sucesso!',
+    'update' => 'Informações do REA atualizadas com sucesso!',
     'drop_files_here' => 'Jogue o arquivo aqui',
     'find' => 'Procurar',
     'titleRepository' => 'Título',
-    'category' => 'Categoria',
+    'topic' => 'Topico',
     'description' => 'Descrição',
     'not_found' => [
-        'title' => 'Nenhum repositório encontrado',
-        'text' => 'Alte'
+        'title' => 'Nenhum REA encontrado',
+        'text' => 'Crie REAs para compartilhar informações com outros pesquisadores.'
     ],
 
     'datatable' => [

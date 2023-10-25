@@ -22,7 +22,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('city')->nullable();
             $table->string('country')->nullable();
             $table->string('zipcode')->nullable();
-            $table->integer('storage')->default(5242880); // 1024 × 1024 × 5
+            $table->integer('storage')->default(1024 * 1024);
             $table->foreignId('user_id')->cascade('delete');
             $table->timestamps();
         });

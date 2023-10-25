@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class Category extends Authenticatable implements MustVerifyEmail
+class Link extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -18,7 +18,8 @@ class Category extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name',
+        'url',
+        'repository_id',
     ];
 
     /**
@@ -36,4 +37,8 @@ class Category extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
     ];
+
+    public function reposity() {
+        return $this->hasOne(Repository::class);
+    }
 }

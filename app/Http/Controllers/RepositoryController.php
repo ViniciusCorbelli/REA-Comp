@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RepositoryRequest;
-use App\Models\Category;
-use App\Models\File;
+use App\Models\Topic;
 use App\Models\Repository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -34,10 +33,10 @@ class RepositoryController extends Controller {
     public function create() {
         removeSession(FileUploadController::FILE_KEY);
 
-        $categories = Category::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
         $data = null;
 
-        return view('repositories.form', compact('data', 'categories'));
+        return view('repositories.form', compact('data', 'topics'));
     }
 
     /**
@@ -57,17 +56,23 @@ class RepositoryController extends Controller {
                 $target_path = 'repository/' . $repository->id . '/' . $file['file_name'];
                 Storage::move($file['path'], $target_path);
                 
-                File::create([
+                $repository->files()->create([
                     'file_name' => $file['file_name'],
                     'mime_type' => $file['mime_type'],
                     'path' => $target_path,
-                    'repository_id' => $repository['id'],
                     'size' => $file['size']
                 ]);
             }
         }
 
-        return redirect()->route('repositories.index')->withSuccess(__('message.msg_added', ['name' => __('repositories.store')]));
+        // Salva os links relacionados
+        foreach ($request->input('links') as $link) {
+            if (!empty($link)) {
+            $repository->links()->create(['url' => $link]);
+            }
+        }
+
+        return redirect()->route('repositories.index')->withSuccess(__('repositories.store'));
     }
 
     /**
@@ -78,11 +83,11 @@ class RepositoryController extends Controller {
      */
     public function show(Repository $repository) {
         $id = $repository->id;
-        $data = Repository::with('files')->findOrFail($id);
+        $data = Repository::with(['files', 'links'])->findOrFail($id);
 
-        $categories = Category::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
 
-        return view('repositories.form', compact('data', 'id', 'categories'));
+        return view('repositories.form', compact('data', 'id', 'topics'));
     }
 
     /**
@@ -93,11 +98,11 @@ class RepositoryController extends Controller {
      */
     public function edit(Repository $repository) {
         $id = $repository->id;
-        $data = Repository::with('files')->findOrFail($id);
+        $data = Repository::with(['files', 'links'])->findOrFail($id);
 
-        $categories = Category::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
 
-        return view('repositories.form', compact('data', 'id', 'categories'));
+        return view('repositories.form', compact('data', 'id', 'topics'));
     }
 
     /**
@@ -113,7 +118,15 @@ class RepositoryController extends Controller {
 
         $repository->fill($request->all())->update();
 
-        return redirect()->route('repositories.index')->withSuccess(__('message.msg_updated', ['name' => __('message.user')]));
+        // Atualiza os links relacionados
+        $repository->links()->delete(); // Remove todos os links associados
+        foreach ($request->input('links') as $link) {
+            if (!empty($link)) {
+                $repository->links()->create(['url' => $link]);
+            }
+        }
+
+        return redirect()->route('repositories.index')->withSuccess(__('repositories.update'));
     }
 
     /**

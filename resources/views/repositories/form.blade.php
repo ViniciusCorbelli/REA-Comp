@@ -14,11 +14,55 @@
         @endif
 
         <div class="row">
+            <div class="col-xl-8 col-lg-7">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">
+                                {{ $id !== null ? trans('global-message.update_form_title', ['form' => trans('repositories.title')]) : trans('global-message.add_form_title', ['form' => trans('repositories.title')]) }}
+                            </h4>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{ route('repositories.index') }}" class="btn btn-sm btn-primary"
+                                role="button">{{ __('global-message.back') }}</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="new-repository-info">
+
+                            <div class="form-group col-md-6">
+                                <label class="form-label" for="title">{{ __('repositories.titleRepository') }}:
+                                    <span class="text-danger">*</span></label>
+                                {{ Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => 'Título', 'required']) }}
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label class="form-label" for="description">{{ __('repositories.topic') }}: <span
+                                        class="text-danger">*</span></label>
+                                {{ Form::select('topic_id', $topics, old('topic_id'), ['class' => 'form-control']) }}
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label class="form-label" for="description">{{ __('repositories.description') }}: <span
+                                        class="text-danger">*</span></label>
+                                {{ Form::textarea('description', old('description'), ['class' => 'form-control']) }}
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="btn btn-primary">{{ $id !== null ? __('global-message.update') : __('global-message.save') }}
+                            {{ __('repositories.title') }}</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-xl-4 col-lg-5">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">{{ $id !== null ? trans('global-message.update_form_title', ['form' => trans('repositories.file')]) : trans('global-message.add_form_title', ['form' => trans('repositories.file')]) }}</h4>
+                            <h4 class="card-title">
+                                {{ $id !== null ? trans('global-message.update_form_title', ['form' => trans('repositories.file')]) : trans('global-message.add_form_title', ['form' => trans('repositories.file')]) }}
+                            </h4>
                         </div>
                     </div>
                     <div class="card-body">
@@ -39,7 +83,7 @@
                                                     <div class="d-flex align-items-center">
                                                         <img class="rounded img-fluid avatar-40 me-3 bg-soft-primary"
                                                             src="{{ getImage($media->mime_type) }}">
-                                                        <h6><a
+                                                        <h6 class="limit-text"><a
                                                                 href="{{ asset('storage/' . $media->path) }}">{{ $media->file_name }}</a>
                                                         </h6>
                                                     </div>
@@ -81,52 +125,33 @@
                                 <input type="file" id="browseFile" style="display:none">
                             </label>
                         </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-xl-8 col-lg-7">
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between">
-                        <div class="header-title">
-                            <h4 class="card-title">{{ $id !== null ? trans('global-message.update_form_title', ['form' => trans('repositories.title')]) : trans('global-message.add_form_title', ['form' => trans('repositories.title')]) }}</h4>
+                        <div class="border-bottom pb-3 d-flex align-items-center justify-content-between">
+                            <h4>Links</h4>
+                            <a for="links" class="btn btn-primary" onclick="addLink()">+</a>
                         </div>
-                        <div class="card-action">
-                            <a href="{{ route('repositories.index') }}" class="btn btn-sm btn-primary"
-                                role="button">{{ __('global-message.back') }}</a>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="new-repository-info">
 
-                            <div class="form-group col-md-6">
-                                <label class="form-label" for="title">{{ __('repositories.titleRepository') }}: <span
-                                        class="text-danger">*</span></label>
-                                {{ Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => 'Título', 'required']) }}
-                            </div>
+                        <div id="linksContainer">
+                            @if ($data != null && count($data->links) > 0)
+                                @foreach ($data->links as $link)
+                                    <div class="form-group input-group form-group-alt">
+                                        {{ Form::text('links[]', $link->url, ['class' => 'form-control']) }}
+                                        <a class="btn" onclick="removeLink(this)"><img
+                                                src="/images/icons/trash.svg"></a>
+                                    </div>
+                                @endforeach
+                            @endif
 
-                            <div class="form-group col-md-6">
-                                <label class="form-label" for="description">{{ __('repositories.category') }}: <span
-                                        class="text-danger">*</span></label>
-                                {{ Form::select('category_id', $categories, old('category_id'), ['class' => 'form-control']) }}
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label class="form-label" for="description">{{ __('repositories.description') }}: <span
-                                        class="text-danger">*</span></label>
-                                {{ Form::textarea('description', old('description'), ['class' => 'form-control']) }}
+                            <div class="form-group input-group form-group-alt">
+                                {{ Form::text('links[]', '', ['class' => 'form-control']) }}
+                                <a class="btn" onclick="removeLink(this)"><img src="/images/icons/trash.svg"></a>
                             </div>
                         </div>
 
-                        <button type="submit"
-                            class="btn btn-primary">{{ $id !== null ? __('global-message.update') : __('global-message.save') }}
-                            {{ __('repositories.title') }}</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 
     <div class="progress-upload" style="display: none">
@@ -145,7 +170,6 @@
         <div class="progress-upload-body">
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/resumablejs@1.1.0/resumable.min.js"></script>
     <script type="text/javascript">
@@ -191,23 +215,29 @@
         resumable.on('fileSuccess', function(file, response) {
             response = JSON.parse(response)
 
-            const progressDiv = progress.querySelector('#progress-div-' + file.uniqueIdentifier);
-            progressDiv.innerHTML = `<div class="progress-upload-item-status">
-                     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="#0F9D58">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-                     </svg>
-                  </div>`
+            if (response.status == false) {
+                showError(file)
+                return;
+            }
 
-            progress.querySelector('#file-name-' + file.uniqueIdentifier).innerHTML = `<p id="file-name-` + file
-                .uniqueIdentifier + `"><a href="` + response.path + `">` + file.fileName + `</a></p>`;
+            showSuccess(file, response)
 
+            insertListFiles(file, response)
 
+        });
 
+        resumable.on('fileError', function(file, response) {
+            showError(file)
+        });
+
+        let progress = document.querySelector('.progress-upload');
+
+        function insertListFiles(file, response) {
             const mediaList = `<tr id="media-` + response.file_id + `">
                     <td>
                         <div class="d-flex align-items-center">
                             <img class="rounded img-fluid avatar-40 me-3 bg-soft-primary" src="` + response.image + `">
-                            <h6><a href="` + response.path + `">` + file.fileName + `</a></h6>
+                            <h6 class="limit-text"><a href="` + response.path + `">` + file.fileName + `</a></h6>
                         </div>
                         </td>
                         <td>` + response.size + `</td>
@@ -238,10 +268,21 @@
 
             const mediasDiv = document.querySelector('.medias');
             mediasDiv.innerHTML = mediasDiv.innerHTML + mediaList;
+        }
 
-        });
+        function showSuccess(file, response) {
+            const progressDiv = progress.querySelector('#progress-div-' + file.uniqueIdentifier);
+            progressDiv.innerHTML = `<div class="progress-upload-item-status">
+                     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="#0F9D58">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                     </svg>
+                  </div>`
 
-        resumable.on('fileError', function(file, response) {
+            progress.querySelector('#file-name-' + file.uniqueIdentifier).innerHTML = `<p id="file-name-` + file
+                .uniqueIdentifier + `"><a href="` + response.path + `">` + file.fileName + `</a></p>`;
+        }
+
+        function showError(file) {
             const progressDiv = progress.querySelector('#progress-div-' + file.uniqueIdentifier);
             progressDiv.innerHTML = `<div class="progress-upload-item-status">
                     <svg width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
@@ -253,10 +294,7 @@
                     </g>
                     </svg>
                   </div>`
-
-        });
-
-        let progress = document.querySelector('.progress-upload');
+        }
 
         function showProgress(file) {
             progress.style.display = 'block';
@@ -308,6 +346,40 @@
                 })
                 .catch(error => console.error(error));
 
+        }
+
+        function addLink() {
+            const inputContainer = document.getElementById("linksContainer");
+            const newInputGroup = document.createElement("div");
+            newInputGroup.className = "form-group input-group form-group-alt";
+
+            const newInput = document.createElement("input");
+            newInput.className = "form-control";
+            newInput.name = "links[]";
+            newInput.type = "text";
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "btn";
+            const deleteLink = document.createElement("a");
+            deleteLink.setAttribute("onclick", "removeLink(this)");
+
+            const deleteImage = document.createElement("img");
+            deleteImage.src = "/images/icons/trash.svg";
+
+            deleteLink.appendChild(deleteImage);
+            deleteButton.appendChild(deleteLink);
+
+            newInputGroup.appendChild(newInput);
+            newInputGroup.appendChild(deleteButton);
+            inputContainer.appendChild(newInputGroup);
+        }
+
+        function removeLink(element) {
+            var parentDiv = element.closest('.form-group.input-group.form-group-alt');
+
+            if (parentDiv) {
+                parentDiv.remove();
+            }
         }
     </script>
 

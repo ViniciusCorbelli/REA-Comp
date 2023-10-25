@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\Topic;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoryDataTable extends DataTable
+class TopicDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -20,17 +20,17 @@ class CategoryDataTable extends DataTable
             ->editColumn('created_at', function ($query) {
                 return date('Y/m/d', strtotime($query->created_at));
             })
-            ->addColumn('action', 'categories.action');
+            ->addColumn('action', 'topics.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Category $model
+     * @param \App\Models\Topic $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query() {
-        $model = Category::query();
+        $model = Topic::query();
         return $this->applyScopes($model);
     }
 
@@ -59,9 +59,9 @@ class CategoryDataTable extends DataTable
      */
     protected function getColumns() {
         return [
-            ['data' => 'name', 'name' => 'name', 'title' => __('categories.datatable.name'), 'orderable' => false],
-            ['data' => 'created_at', 'name' => 'created_at', 'title' => __('categories.datatable.create_date')],
-            Column::computed('action', __('categories.datatable.action'))
+            ['data' => 'name', 'name' => 'name', 'title' => __('topics.datatable.name'), 'orderable' => false],
+            ['data' => 'created_at', 'name' => 'created_at', 'title' => __('topics.datatable.create_date')],
+            Column::computed('action', __('topics.datatable.action'))
                 ->exportable(false)
                 ->printable(false)
                 ->searchable(false)

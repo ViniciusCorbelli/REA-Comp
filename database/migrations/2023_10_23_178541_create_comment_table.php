@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Storage;
 
-class CreateFileTable extends Migration
+class CreateCommentTable extends Migration
 {
 
     /**
@@ -14,17 +13,13 @@ class CreateFileTable extends Migration
      * @return void
      */
     public function up() {
-        Storage::deleteDirectory('repository');
-        Storage::deleteDirectory('tmp');
-
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('file_name');
-            $table->string('mime_type')->nullable();
-            $table->string('path');
-            $table->integer('size');
+            $table->string('message');
+            $table->foreignId('user_id')->cascade('delete');
             $table->foreignId('repository_id')->cascade('delete');
+            $table->foreignId('comment_id')->cascade('delete')->nullable();
 
             $table->nullableTimestamps();
         });
@@ -36,6 +31,6 @@ class CreateFileTable extends Migration
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('comments');
     }
 }

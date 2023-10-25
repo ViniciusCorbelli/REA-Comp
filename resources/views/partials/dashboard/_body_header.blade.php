@@ -44,6 +44,9 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item"
                                     href="{{ route('users.show', auth()->id()) }}">{{ __('auth.profile') }}</a></li>
+
+                            <li><a class="dropdown-item"
+                                    href="{{ route('favorities.index') }}">{{ __('favorities.title') }}</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

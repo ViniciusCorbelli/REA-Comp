@@ -12,6 +12,12 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
+    const USER_TYPE_ADMIN = 'admin';
+    const USER_TYPE_USER = 'user';
+    const ACTIVE = 'active';
+    const PENDING = 'pending';
+    const INACTIVE = 'inactive';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -49,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = ['full_name'];
 
     public function isAdministrator() {
-        return $this->user_type == 'admin';
+        return $this->user_type == self::USER_TYPE_ADMIN;
     }
     
     public function getFullNameAttribute() {
@@ -62,5 +68,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function repositories() {
         return $this->hasMany(Repository::class);
+    }
+
+    public function favorities() {
+        return $this->belongsToMany(Repository::class, 'favorities');
     }
 }

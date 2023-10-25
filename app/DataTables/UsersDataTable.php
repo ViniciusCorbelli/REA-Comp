@@ -20,10 +20,10 @@ class UsersDataTable extends DataTable
             ->editColumn('status', function ($query) {
                 $status = 'warning';
                 switch ($query->status) {
-                    case 'active':
+                    case User::ACTIVE:
                         $status = 'primary';
                         break;
-                    case 'inactive':
+                    case User::INACTIVE:
                         $status = 'danger';
                         break;
                 }
