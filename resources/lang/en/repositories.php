@@ -12,19 +12,20 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
-    'title' => 'REA',
+    'title' => 'OER',
     'file' => 'File',
-    'store' => 'REA info added successfully!',
-    'update' => 'REA info updated successfully!',
+    'store' => 'OER info added successfully!',
+    'update' => 'OER info updated successfully!',
     'drop_files_here' => 'Drop file here',
     'find' => 'Find',
     'titleRepository' => 'Title',
     'topic' => 'Topic',
     'description' => 'Description',
     'not_found' => [
-        'title' => 'No REA found',
-        'text' => 'Create REA to share information with other researchers.'
+        'title' => 'No OER found',
+        'text' => 'Create OER to share information with other researchers.'
     ],
+    'comments' => 'Comments',
 
     'datatable' => [
         'title' => 'Title',

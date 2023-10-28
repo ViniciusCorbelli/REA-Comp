@@ -23,7 +23,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto  navbar-list mb-2 mb-lg-0">
-                @include('partials.dashboard.switch_language')
+                @include('partials.public.switch_language')
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -33,7 +33,7 @@
                     </li>
                 @else
                     <li class="nav-item dropdown">
-                        <a class="nav-link py-0 d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link py-0 d-flex align-items-center" href="javascript:void(0)" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('images/avatars/01.png') }}" alt="User-Profile"
                                 class="theme-color-default-img img-fluid avatar avatar-50 avatar-rounded">

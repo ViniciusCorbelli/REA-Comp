@@ -8,7 +8,7 @@
     <div class="container">
         <nav class="nav navbar navbar-expand-lg navbar-light top-1 rounded">
             <div class="container-fluid">
-                <a class="navbar-brand mx-2" href="#">
+                <a class="navbar-brand mx-2" href="javascript:void(0)">
                     <svg width="30" class="text-primary" viewBox="0 0 30 30" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2"
@@ -113,8 +113,22 @@
                                 </small>
                                 <a href="repository/` + repository.id +
                 `" class="iq-title">
-                                    <h4 class="mt-2 mb-3 text-ellipsis short-2" data-bs-toggle="tooltip" data-bs-original-title="` + repository.title + `">` + repository.title + `</h4>
+                                    <h4 class="mt-2 mb-3 text-ellipsis short-2" data-bs-toggle="tooltip" data-bs-original-title="` +
+                repository.title + `">` + repository.title + `</h4>
                                 </a>
+
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <div class="rate">
+                                            <label title="text" class="` + (repository.score >= 1 ? 'rated-user' : '') + `"></label>
+                                            <label title="text" class="` + (repository.score >= 2 ? 'rated-user' : '') + `"></label>
+                                            <label title="text" class="` + (repository.score >= 3 ? 'rated-user' : '') + `"></label>
+                                            <label title="text" class="` + (repository.score >= 4 ? 'rated-user' : '') + `"></label>
+                                            <label title="text" class="` + (repository.score >= 5 ? 'rated-user' : '') + `"></label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="d-flex gap-2">
                                     <a href="repository/` + repository.id +
                 `" data-bs-toggle="tooltip" class="text-body text-ellipsis short-1 fs-6" data-bs-original-title="` +

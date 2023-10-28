@@ -8,15 +8,16 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FavorityController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\RateController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\UserController;
-use App\Models\Topic;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -108,4 +109,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Favority Module
     Route::resource('favorities', FavorityController::class);
+
+    // Rate Module
+    Route::resource('ratings', RateController::class);
+
+    // Favority Module
+    Route::resource('comments', CommentController::class);
 });

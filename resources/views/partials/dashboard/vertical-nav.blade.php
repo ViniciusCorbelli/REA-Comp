@@ -1,6 +1,6 @@
 <ul class="navbar-nav iq-main-menu" id="sidebar">
     <li class="nav-item static-item">
-        <a class="nav-link static-item disabled" href="#" tabindex="-1">
+        <a class="nav-link static-item disabled" href="javascript:void(0)" tabindex="-1">
             <span class="mini-icon">-</span>
         </a>
     </li>
@@ -9,7 +9,7 @@
         <hr class="hr-horizontal">
     </li>
     <li class="nav-item static-item">
-        <a class="nav-link static-item disabled text-start" href="#" tabindex="-1">
+        <a class="nav-link static-item disabled text-start" href="javascript:void(0)" tabindex="-1">
             <span class="default-icon">{{ __('global-message.file-manager') }}</span>
             <span class="mini-icon">-</span>
         </a>
@@ -66,7 +66,7 @@
             <hr class="hr-horizontal">
         </li>
         <li class="nav-item static-item">
-            <a class="nav-link static-item disabled text-start" href="#" tabindex="-1">
+            <a class="nav-link static-item disabled text-start" href="javascript:void(0)" tabindex="-1">
                 <span class="default-icon">{{ __('global-message.admin') }}</span>
                 <span class="mini-icon">-</span>
             </a>

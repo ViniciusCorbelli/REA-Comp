@@ -25,6 +25,7 @@ return [
         'title' => 'Nenhum REA encontrado',
         'text' => 'Crie REAs para compartilhar informações com outros pesquisadores.'
     ],
+    'comments' => 'Comentarios',
 
     'datatable' => [
         'title' => 'Título',

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateScoreTable extends Migration
+class CreateRateTable extends Migration
 {
 
     /**
@@ -13,7 +13,7 @@ class CreateScoreTable extends Migration
      * @return void
      */
     public function up() {
-        Schema::create('scores', function (Blueprint $table) {
+        Schema::create('rates', function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->unsignedTinyInteger('score');
@@ -30,6 +30,6 @@ class CreateScoreTable extends Migration
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('scores');
+        Schema::dropIfExists('rates');
     }
 }

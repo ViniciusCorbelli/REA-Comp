@@ -26,5 +26,23 @@ return [
         'status' => 'Status',
         'create_date' => 'Data de Cadastro',
         'action' => 'Ação',
-    ]
+    ],
+
+    'status' => 'Status',
+    'first_name' => 'Nome',
+    'last_name' => 'Sobrenome',
+    'street' => 'Rua',
+    'number' => 'Número',
+    'additional_info' => 'Informações Adicionais',
+    'neighborhood' => 'Bairro',
+    'state' => 'Estado',
+    'city' => 'Cidade',
+    'country' => 'País',
+    'zipcode' => 'CEP',
+    'phone_number' => 'Número de Telefone',
+    'email' => 'E-mail',
+    'security' => 'Segurança',
+    'user_name' => 'Nome de Usuário',
+    'password' => 'Senha',
+    'repeat_password' => 'Repita a Senha'
 ];

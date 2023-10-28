@@ -106,19 +106,9 @@ class UserController extends Controller {
     public function destroy(User $user) {
         $id = $user->id;
         $user = User::findOrFail($id);
-        $status = 'errors';
-        $message = __('global-message.delete_form', ['form' => __('users.title')]);
 
-        if ($user != '') {
-            $user->delete();
-            $status = 'success';
-            $message = __('global-message.delete_form', ['form' => __('users.title')]);
-        }
+        $user->delete();
 
-        if (request()->ajax()) {
-            return response()->json(['status' => true, 'message' => $message, 'datatable_reload' => 'dataTable_wrapper']);
-        }
-
-        return redirect()->back()->with($status, $message);
+        return redirect()->back()->with('success', __('global-message.delete_form', ['form' => __('users.title')]));
     }
 }

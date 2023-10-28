@@ -18,8 +18,8 @@
                            </svg>
                            <h4 class="logo-title ms-3">{{env('APP_NAME')}}</h4>
                         </a>
-                        <h2 class="mb-2 text-center">Sign Up</h2>
-                        <p class="text-center">Create your {{env('APP_NAME')}} account.</p>
+                        <h2 class="mb-2 text-center">{{ __('auth.reset_password') }}</h2>
+                        <p class="text-center">{{ __('auth.create_account') }}</p>
                         <x-auth-session-status class="mb-4" :status="session('status')" />
 
                         <!-- Validation Errors -->
@@ -29,52 +29,46 @@
                            <div class="row">
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="full-name" class="form-label">Full Name</label>
+                                    <label for="full-name" class="form-label">{{ __('auth.full_name') }}</label>
                                     <input id="name"  name="first_name" value="{{old('first_name')}}" class="form-control" type="text" placeholder=" "  required autofocus >
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="last-name" class="form-label">Last Name</label>
+                                    <label for="last-name" class="form-label">{{ __('auth.last_name') }}</label>
                                     <input class="form-control" type="text" name="last_name" placeholder=" " value="{{old('last_name')}}" required>
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                       <label>Email <span class="text-danger">*</span></label>
+                                       <label>{{ __('auth.email') }} <span class="text-danger">*</span></label>
                                        <input class="form-control" type="email" placeholder=" " id="email"  name="email" value="{{old('email')}}" required>
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="phone" class="form-label">Phone No.</label>
+                                    <label for="phone" class="form-label">{{ __('auth.phone_no') }}</label>
                                     <input class="form-control" type="text" name="phone_number" placeholder=" ">
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="password" class="form-label">Password</label>
+                                    <label for="password" class="form-label">{{ __('auth.password') }}</label>
                                     <input class="form-control" type="password" placeholder=" " id="password" name="password" required autocomplete="new-password" >
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                                    <label for="confirm-password" class="form-label">{{ __('auth.confirm_password') }}</label>
                                     <input id="password_confirmation" class="form-control" type="password" placeholder=" " name="password_confirmation" required >
-                                 </div>
-                              </div>
-                              <div class="d-flex justify-content-center">
-                                 <div class="form-check mb-3">
-                                    <label class="form-check-label" for="customCheck1">I agree with the terms of use</label>
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" required>
                                  </div>
                               </div>
                            </div>
                            <div class="d-flex justify-content-center">
-                              <button type="submit" class="btn btn-primary"> {{ __('sign up') }}</button>
+                              <button type="submit" class="btn btn-primary"> {{ __('auth.sign_up') }}</button>
                            </div>
                            <p class="mt-3 text-center">
-                              Already have an Account  <a href="{{route('login')}}" class="text-underline">Sign In</a>
+                              {{ __('auth.already_have_an_account') }}  <a href="{{route('login')}}" class="text-underline">{{ __('auth.sign_in') }}</a>
                            </p>
                         </form>
                      </div>

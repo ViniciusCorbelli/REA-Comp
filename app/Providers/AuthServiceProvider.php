@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use App\Models\Favority;
 use App\Models\Topic;
 use App\Models\Repository;
 use App\Models\User;
+use App\Policies\CommentPolicy;
 use App\Policies\FavorityPolicy;
 use App\Policies\TopicPolicy;
 use App\Policies\RepositoryPolicy;
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        Comment::class => CommentPolicy::class,
         Favority::class => FavorityPolicy::class,
         Topic::class => TopicPolicy::class,
         Repository::class => RepositoryPolicy::class,

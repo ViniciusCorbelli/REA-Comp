@@ -1,9 +1,9 @@
 @auth
-    <a class="pointer" onclick="favority({{ $repository->id }})"><img id="favorityButton"
-            class="rounded img-fluid avatar-40 me-3" src="{{ '/images/icons/' . (Auth::user()->favorities()->wherePivot('repository_id', $repository->id)->exists() ? 'heart_filled' : 'heart_suit')  . '.svg' }}"></a>
+    <a class="btn btn-soft-primary btn-icon rounded-pill" onclick="favority()"><img id="favorityButton" class="rounded img-fluid avatar-40 me-3"
+            src="{{ '/images/icons/' .(Auth::user()->favorities()->wherePivot('repository_id', $repository->id)->exists()? 'heart_filled': 'heart_suit') .'.svg' }}"></a>
 
     <script>
-        function favority(repository_id) {
+        function favority() {
             const token = '{{ csrf_token() }}';
             fetch('{{ route('favorities.store') }}', {
                     method: 'post',
@@ -13,7 +13,7 @@
                     },
                     body: JSON.stringify({
                         _token: token,
-                        repository_id: repository_id
+                        repository_id: {{ $repository->id }}
                     })
                 })
                 .then(response => {

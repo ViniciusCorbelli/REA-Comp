@@ -18,7 +18,7 @@ return [
     'moment' => 'a moment',
     'ago' => 'ago',
     'not_found' => [
-        'title' => 'No repositories found',
-        'text' => 'No projects were found with this search, try changing the keywords.'
+        'title' => 'No OER found',
+        'text' => 'No OER were found with this search, try changing the keywords.'
     ],
 ];

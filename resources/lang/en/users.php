@@ -26,5 +26,23 @@ return [
         'status' => 'Status',
         'create_date' => 'Create Date',
         'action' => 'Action',
-    ]
+    ],
+
+    'status' => 'Status',
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
+    'street' => 'Street',
+    'number' => 'Number',
+    'additional_info' => 'Additional Info',
+    'neighborhood' => 'Neighborhood',
+    'state' => 'State',
+    'city' => 'City',
+    'country' => 'Country',
+    'zipcode' => 'Zip Code',
+    'phone_number' => 'Phone Number',
+    'email' => 'Email',
+    'security' => 'Security',
+    'user_name' => 'User Name',
+    'password' => 'Password',
+    'repeat_password' => 'Repeat Password'
 ];

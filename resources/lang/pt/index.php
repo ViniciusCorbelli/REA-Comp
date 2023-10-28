@@ -18,7 +18,7 @@ return [
     'moment' => 'um momento',
     'ago' => 'atrás',
     'not_found' => [
-        'title' => 'Nenhum repositório encontrado',
-        'text' => 'Nenhum projeto foi encontrado com está busca, tente alterar as palavras chaves.'
+        'title' => 'Nenhum REA encontrado',
+        'text' => 'Nenhum REA foi encontrado com está busca, tente alterar as palavras chaves.'
     ],
 ];

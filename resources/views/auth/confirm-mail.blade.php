@@ -14,12 +14,10 @@
                      <h4 class="logo-title ms-3">{{env('APP_NAME')}}I</h4>
                   </a>
                   <img src="{{asset('images/auth/mail.png')}}" class="img-fluid" width="80" alt="">
-                  <h2 class="mt-3 mb-0">Success !</h2>
-                  <p class="cnf-mail mb-1">A email has been send to youremail@domain.com. Please check for an
-                     email from company and click
-                     on the included link to reset your password.</p>
+                  <h2 class="mt-3 mb-0">{{ __('auth.success') }}</h2>
+                  <p class="cnf-mail mb-1">{{ __('auth.email_sent') }}</p>
                   <div class="d-inline-block w-100">
-                     <a href="{{route('dashboard')}}" class="btn btn-primary mt-3">Back to Home</a>
+                     <a href="{{route('dashboard')}}" class="btn btn-primary mt-3">{{ __('auth.back_to_home') }}</a>
                   </div>
                </div>
             </div>                  

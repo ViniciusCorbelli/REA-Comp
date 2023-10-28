@@ -1,5 +1,5 @@
 <li class="nav-item dropdown">
-    <a href="#" class="search-toggle nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+    <a href="javascript:void(0)" class="search-toggle nav-link" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
         <img src="{{ asset('images/Flag/flag-' . (app()->getLocale() ?? 'pt') . '.png') }}"
             class="img-fluid rounded-circle" style="height: 30px; min-width: 30px; width: 30px;">

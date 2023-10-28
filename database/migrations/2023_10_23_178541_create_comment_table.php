@@ -19,7 +19,6 @@ class CreateCommentTable extends Migration
             $table->string('message');
             $table->foreignId('user_id')->cascade('delete');
             $table->foreignId('repository_id')->cascade('delete');
-            $table->foreignId('comment_id')->cascade('delete')->nullable();
 
             $table->nullableTimestamps();
         });

@@ -15,8 +15,8 @@
                            </svg>
                            <h4 class="logo-title ms-3">{{env('APP_NAME')}}</h4>
                         </a>
-                        <h2 class="mb-2 text-center">Sign In</h2>
-                        <p class="text-center">Login to stay connected.</p>
+                        <h2 class="mb-2 text-center">{{ __('auth.sign_in') }}</h2>
+                        <p class="text-center">{{ __('auth.login_stay_connected') }}</p>
                         <x-auth-session-status class="mb-4" :status="session('status')" />
 
                         <!-- Validation Errors -->
@@ -26,32 +26,31 @@
                            <div class="row">
                               <div class="col-lg-12">
                                  <div class="form-group">
-                                    <label for="email" class="form-label">Email</label>
+                                    <label for="email" class="form-label">{{ __('auth.email') }}</label>
                                     <input id="email" type="email" name="email"  value="{{ old('email')}}" class="form-control"  required autofocus>
                                  </div>
                               </div>
                               <div class="col-lg-12">
                                  <div class="form-group">
-                                    <label for="password" class="form-label">Password</label>
+                                    <label for="password" class="form-label">{{ __('auth.password') }}</label>
                                     <input class="form-control" type="password" placeholder="********"  name="password" required autocomplete="current-password">
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-check mb-3">
                                     <input type="checkbox" class="form-check-input" id="customCheck1">
-                                    <!-- <input type="checkbox" class="custom-control-input" id="customCheck1"> -->
-                                    <label class="form-check-label" for="customCheck1">Remember Me</label>
+                                    <label class="form-check-label" for="customCheck1">{{ __('auth.remember_me') }}</label>
                                  </div>
                               </div>
                               <div class="col-lg-6">
-                                 <a href="{{""}}"  class="float-end">Forgot Password?</a>
+                                 <a href="{{""}}"  class="float-end">{{ __('auth.forgot_password') }}</a>
                               </div>
                            </div>
                            <div class="d-flex justify-content-center">
-                              <button type="submit" class="btn btn-primary">{{ __('Sign In') }}</button>
+                              <button type="submit" class="btn btn-primary">{{ __('auth.sign_in') }}</button>
                            </div>
                            <p class="mt-3 text-center">
-                              Don’t have an account? <a href="{{""}}" class="text-underline">Click here to sign up.</a>
+                              {{ __('auth.dont_have_account') }} <a href="{{""}}" class="text-underline">{{ __('auth.click_here_to_sign_up') }}</a>
                            </p>
                         </form>
                      </div>

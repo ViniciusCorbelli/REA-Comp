@@ -16,19 +16,19 @@
                      </svg>
                      <h4 class="logo-title ms-3">{{env('APP_NAME')}}</h4>
                   </a>
-                  <h2 class="mb-2">Reset Password</h2>
-                  <p>Enter your email address and we'll send you an email with instructions to reset your password.</p>
+                  <h2 class="mb-2">{{ __('auth.reset_password') }}</h2>
+                  <p>{{ __('auth.enter_email') }}</p>
                   <x-auth-validation-errors class="mb-4" :errors="$errors" />
                   <form>
                      <div class="row">
                         <div class="col-lg-12">
                            <div class="floating-label form-group">
-                              <label for="email" class="form-label">Email</label>
+                              <label for="email" class="form-label">{{ __('auth.email') }}</label>
                               <input type="email" class="form-control" id="email" aria-describedby="email" placeholder=" ">
                            </div>
                         </div>
                      </div>
-                     <button type="submit" class="btn btn-primary btn-block">  {{ __('Reset') }}</button>
+                     <button type="submit" class="btn btn-primary btn-block">  {{ __('auth.reset') }}</button>
                   </form>
                </div>
             </div>               

@@ -138,21 +138,11 @@ class RepositoryController extends Controller {
     public function destroy(Repository $repository) {
         $id = $repository->id;
         $repository = Repository::findOrFail($id);
-        $status = 'errors';
-        $message = __('global-message.delete_form', ['form' => __('repositories.title')]);
 
-        if ($repository != '') {
-            Storage::deleteDirectory('repository/' , $repository->id);
+        Storage::deleteDirectory('repository/' , $repository->id);
 
-            $repository->delete();
-            $status = 'success';
-            $message = __('global-message.delete_form', ['form' => __('repositories.title')]);
-        }
+        $repository->delete();
 
-        if (request()->ajax()) {
-            return response()->json(['status' => true, 'message' => $message, 'datatable_reload' => 'dataTable_wrapper']);
-        }
-
-        return redirect()->back()->with($status, $message);
+        return redirect()->back()->with('success', __('global-message.delete_form', ['form' => __('repositories.title')]));
     }
 }

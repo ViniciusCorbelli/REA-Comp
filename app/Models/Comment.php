@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class Repository extends Authenticatable implements MustVerifyEmail
+class Comment extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -18,10 +18,9 @@ class Repository extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'title',
-        'description',
-        'topic_id',
-        'user_id'
+        'message',
+        'user_id',
+        'repository_id',
     ];
 
     /**
@@ -29,38 +28,22 @@ class Repository extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $hidden = [
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
-    ];
+    protected $casts = [];
 
-    public function topic() {
-        return $this->belongsTo(Topic::class);
-    }
-
-    public function files() {
-        return $this->hasMany(File::class);
-    }
-
-    public function links() {
-        return $this->hasMany(Link::class);
-    }
-
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function rates() {
-        return $this->hasMany(Rate::class);
-    }
-
-    public function comments() {
-        return $this->hasMany(Comment::class);
+    public function repository()
+    {
+        return $this->belongsTo(Repository::class);
     }
 }

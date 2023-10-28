@@ -96,19 +96,9 @@ class TopicController extends Controller {
     public function destroy(Topic $topic) {
         $id = $topic->id;
         $topic = Topic::findOrFail($id);
-        $status = 'errors';
-        $message = __('global-message.delete_form', ['form' => __('topics.title')]);
 
-        if ($topic != '') {
-            $topic->delete();
-            $status = 'success';
-            $message = __('global-message.delete_form', ['form' => __('topics.title')]);
-        }
+        $topic->delete();
 
-        if (request()->ajax()) {
-            return response()->json(['status' => true, 'message' => $message, 'datatable_reload' => 'dataTable_wrapper']);
-        }
-
-        return redirect()->back()->with($status, $message);
+        return redirect()->back()->with('success', __('global-message.delete_form', ['form' => __('topics.title')]));
     }
 }

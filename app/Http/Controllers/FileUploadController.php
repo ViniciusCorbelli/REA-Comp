@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FileRequest;
 use App\Models\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class FileUploadController extends Controller {
 
     const FILE_KEY = 'file';
 
-    public function uploadFile(Request $request, $id = 0) {
+    public function uploadFile(FileRequest $request, $id = 0) {
         $receiver = new FileReceiver('file', $request, HandlerFactory::classFromRequest($request));
 
         if (!$receiver->isUploaded()) {

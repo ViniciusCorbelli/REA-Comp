@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 
-class RepositoryRequest extends FormRequest
+class FileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,6 @@ class RepositoryRequest extends FormRequest
      */
     public function rules() {
         return [
-            'title' => 'required|max:255',
-            'description' => 'required|min:8',
         ];
     }
 

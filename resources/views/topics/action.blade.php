@@ -19,7 +19,7 @@
     ?>
     <a class="btn btn-sm btn-icon btn-danger"
         onclick="return confirm('{{ $message }}') ? document.getElementById('topic-delete-{{ $id }}').submit() : false"
-        data-bs-toggle="tooltip" title="Delete Topic" href="#">
+        data-bs-toggle="tooltip" title="Delete Topic" href="javascript:void(0)">
         <span class="btn-inner">
             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                 stroke="currentColor">

@@ -4,14 +4,14 @@
 @include('partials.dashboard._body_sidebar')
 <main class="main-content">
     <div class="position-relative">
-    @include('partials.dashboard._body_header')
+    @include('partials.public._body_header')
     </div>
     
     <div class="conatiner-fluid content-inner">
     {{ $slot }}
     </div>
     
-    @include('partials.dashboard._body_footer')
+    @include('partials.public._body_footer')
 </main>
 @include('partials.dashboard._scripts')
 @include('partials.dashboard._app_toast')
