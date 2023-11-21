@@ -13,4 +13,8 @@ return [
     |
     */
     'title' => 'Favoritos',
+    'not_found' => [
+        'title' => 'Nenhum favorito encontrado',
+        'text' => 'Adicione REA em seus favoritos'
+    ],
 ];

@@ -13,4 +13,8 @@ return [
     |
     */
     'title' => 'Favorites',
+    'not_found' => [
+        'title' => 'No favorites found',
+        'text' => 'Add OER to your favorites'
+    ],
 ];

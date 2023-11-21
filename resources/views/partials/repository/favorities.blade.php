@@ -1,7 +1,8 @@
 @auth
-    <a class="btn btn-soft-primary btn-icon rounded-pill" onclick="favority()"><img id="favorityButton" class="rounded img-fluid avatar-40 me-3"
-            src="{{ '/images/icons/' .(Auth::user()->favorities()->wherePivot('repository_id', $repository->id)->exists()? 'heart_filled': 'heart_suit') .'.svg' }}"></a>
-
+    <a class="btn btn-soft-primary btn-icon rounded-pill" onclick="favority()">
+        <i class="{{ Auth::user()->favorities()->wherePivot('repository_id', $repository->id)->exists() ? "fa-solid fa-heart" : "fa-regular fa-heart" }}" id="favorityButton"></i>
+    </a>
+        
     <script>
         function favority() {
             const token = '{{ csrf_token() }}';
@@ -22,9 +23,9 @@
                 .then(json => {
                     const favorityButton = document.querySelector('#favorityButton');
                     if (json.action == 'create') {
-                        favorityButton.setAttribute('src', '/images/icons/heart_filled.svg');
+                        favorityButton.classList= 'fa-solid fa-heart';
                     } else {
-                        favorityButton.setAttribute('src', '/images/icons/heart_suit.svg');
+                        favorityButton.classList = 'fa-regular fa-heart';
                     }
                 })
                 .catch(error => console.error(error));

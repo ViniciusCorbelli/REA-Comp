@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="{{asset('vendor/Leaflet/leaflet.css')}}" />
 <link rel="stylesheet" href="{{asset('vendor/vanillajs-datepicker/dist/css/datepicker.min.css')}}" />
 
+<script src="https://kit.fontawesome.com/2ad81f728d.js" crossorigin="anonymous"></script>
+
 <link rel="stylesheet" href="{{asset('vendor/aos/dist/aos.css')}}" />
 
 <style>

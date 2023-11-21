@@ -47,7 +47,7 @@ class UsersDataTable extends DataTable
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query() {
-        $model = User::query()->with('userProfile');
+        $model = User::query();
         return $this->applyScopes($model);
     }
 

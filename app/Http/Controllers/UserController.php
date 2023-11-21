@@ -45,9 +45,7 @@ class UserController extends Controller {
 
         $request['username'] = $request->username ?? stristr($request->email, "@", true) . rand(100, 1000);
 
-        $user = User::create($request->all());
-
-        $user->userProfile()->create($request->userProfile);
+        User::create($request->all());
 
         return redirect()->route('users.index')->withSuccess(__('users.store'));
     }
@@ -60,7 +58,7 @@ class UserController extends Controller {
      */
     public function show(User $user) {
         $id = $user->id;
-        $data = User::with('userProfile')->findOrFail($id);
+        $data = User::findOrFail($id);
 
         return view('users.form', compact('data', 'id'));
     }
@@ -73,7 +71,7 @@ class UserController extends Controller {
      */
     public function edit(User $user) {
         $id = $user->id;
-        $data = User::with('userProfile')->findOrFail($id);
+        $data = User::findOrFail($id);
 
         return view('users.form', compact('data', 'id'));
     }
@@ -87,12 +85,11 @@ class UserController extends Controller {
      */
     public function update(UserRequest $request, User $user) {
         $id = $user->id;
-        $user = User::with('userProfile')->findOrFail($id);
+        $user = User::findOrFail($id);
 
         $request['password'] = $request->password != '' ? bcrypt($request->password) : $user->password;
 
         $user->fill($request->all())->update();
-        $user->userProfile->fill($request->userProfile)->update();
 
         return redirect()->back()->withSuccess(__('users.update'));
     }

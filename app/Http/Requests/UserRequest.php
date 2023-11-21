@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
      */
     public function rules() {
         $method = strtolower($this->method());
-        $user_id = $this->route()->user;
+        $user = $this->route()->user;
 
         $rules = [];
         switch ($method) {
@@ -38,14 +38,6 @@ class UserRequest extends FormRequest
                     'password' => 'required|confirmed|min:8',
                     'email' => 'required|max:191|email|unique:users',
                     'phone_number'=>'max:13',
-                    'userProfile.street' => 'max:255',
-                    'userProfile.number' => 'max:255',
-                    'userProfile.additional_info' => 'max:255',
-                    'userProfile.neighborhood' => 'max:255',
-                    'userProfile.state' => 'max:255',
-                    'userProfile.city' => 'max:255',
-                    'userProfile.country' => 'max:255',
-                    'userProfile.zipcode' => 'max:255',
 
                 ];
                 break;
@@ -54,17 +46,9 @@ class UserRequest extends FormRequest
                     'first_name' => 'required|max:255',
                     'last_name' => 'required|max:255',
                     'username' => 'required|max:20',
-                    'email' => 'required|max:191|email|unique:users,email,'.$user_id,
+                    'email' => 'required|max:191|email|unique:users,email,'.$user->id,
                     'phone_number'=>'max:13',
                     'password' => 'confirmed|min:8|nullable',
-                    'userProfile.street' => 'max:255',
-                    'userProfile.number' => 'max:255',
-                    'userProfile.additional_info' => 'max:255',
-                    'userProfile.neighborhood' => 'max:255',
-                    'userProfile.state' => 'max:255',
-                    'userProfile.city' => 'max:255',
-                    'userProfile.country' => 'max:255',
-                    'userProfile.zipcode' => 'max:255',
                 ];
                 break;
 

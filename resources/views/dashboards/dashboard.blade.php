@@ -246,8 +246,8 @@
                                     </div>
                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 8px">
                                         <div class="progress-bar bg-primary" data-toggle="progress-bar"
-                                            role="progressbar" aria-valuenow="{{ ($storage['documents']['size'] / $storage['total']) * 100 }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: {{ ($storage['documents']['size'] / $storage['total']) * 100 }}%; transition: width 2s ease 0s;">
+                                            role="progressbar" aria-valuenow="{{ $storage['total'] > 0 ? ($storage['documents']['size'] / $storage['total']) * 100 : 0 }}" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: {{ $storage['total'] > 0 ? ($storage['documents']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
                                         </div>
                                     </div>
                                 </div>
@@ -271,8 +271,8 @@
                                     </div>
                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 8px">
                                         <div class="progress-bar bg-success" data-toggle="progress-bar"
-                                            role="progressbar" aria-valuenow="{{ ($storage['videos']['size'] / $storage['total']) * 100 }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: {{ ($storage['videos']['size'] / $storage['total']) * 100 }}%; transition: width 2s ease 0s;">
+                                            role="progressbar" aria-valuenow="{{ $storage['total'] > 0 ? ($storage['videos']['size'] / $storage['total']) * 100 : 0 }}" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: {{ $storage['total'] > 0 ? ($storage['videos']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
                                         </div>
                                     </div>
                                 </div>
@@ -296,8 +296,8 @@
                                     </div>
                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 8px">
                                         <div class="progress-bar bg-warning" data-toggle="progress-bar"
-                                            role="progressbar" aria-valuenow="{{ ($storage['imagens']['size'] / $storage['total']) * 100 }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: {{ ($storage['imagens']['size'] / $storage['total']) * 100 }}%; transition: width 2s ease 0s;">
+                                            role="progressbar" aria-valuenow="{{ $storage['total'] > 0 ? ($storage['imagens']['size'] / $storage['total']) * 100 : 0 }}" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: {{ $storage['total'] > 0 ? ($storage['imagens']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
                                         </div>
                                     </div>
                                 </div>
@@ -321,8 +321,8 @@
                                     </div>
                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 8px">
                                         <div class="progress-bar bg-danger" data-toggle="progress-bar"
-                                            role="progressbar" aria-valuenow="{{ ($storage['others']['size'] / $storage['total']) * 100 }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: {{ ($storage['others']['size'] / $storage['total']) * 100 }}%; transition: width 2s ease 0s;">
+                                            role="progressbar" aria-valuenow="{{ $storage['total'] > 0 ? ($storage['others']['size'] / $storage['total']) * 100 : 0 }}" aria-valuemin="0"
+                                            aria-valuemax="100" style="width: {{ $storage['total'] > 0 ? ($storage['others']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
                                         </div>
                                     </div>
                                 </div>

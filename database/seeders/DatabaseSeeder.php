@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
         ]);
         \App\Models\User::factory(40)->create();
-        \App\Models\UserProfile::factory(43)->create();
         \App\Models\Topic::factory(50)->create();
     }
 }

@@ -59,7 +59,7 @@ function checkAllowUpload($fileSize) {
         ->flatMap(function ($repository) {
             return $repository->files;
         });
-    $storageFree = Auth::user()->userProfile()->first()->storage - $files->sum('size');
+    $storageFree = Auth::user()->storage - $files->sum('size');
 
     return $fileSize < $storageFree;
 }

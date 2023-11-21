@@ -24,11 +24,8 @@ class HomeController extends Controller {
             ->leftJoin('rates', 'repositories.id', '=', 'rates.repository_id')
             ->leftJoin('comments', 'repositories.id', '=', 'comments.repository_id')
             ->leftJoin('favorities', 'repositories.id', '=', 'favorities.repository_id')
-            ->groupBy('repositories.id')
-            ->orderBy('score', 'desc')
-            ->orderBy('comments', 'desc')
-            ->orderBy('favorities', 'desc')
-        ->get();
+            ->orderBy($request->input('order'), 'desc')
+        ->paginate(1);
     
         return response()->json(
             $repositories, 

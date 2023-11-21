@@ -9,14 +9,10 @@
 
         <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" />
         
-        <!-- Fonts -->
-        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> -->
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/libs.min.css') }}">
         <link rel="stylesheet" href="{{asset('css/app.css?v=1.0')}}">
-        <!-- remixicon -->
-        <!-- <link rel="stylesheet" href="{{ asset('vendor/remixicon/fonts/remixicon.css') }}"/> -->
 
     </head>
     <body class=" " data-bs-spy="scroll" data-bs-target="#elements-section" data-bs-offset="0" tabindex="0">

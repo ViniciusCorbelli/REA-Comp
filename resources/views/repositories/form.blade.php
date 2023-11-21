@@ -136,15 +136,14 @@
                                 @foreach ($data->links as $link)
                                     <div class="form-group input-group form-group-alt">
                                         {{ Form::text('links[]', $link->url, ['class' => 'form-control']) }}
-                                        <a class="btn" onclick="removeLink(this)"><img
-                                                src="/images/icons/trash.svg"></a>
+                                        <a class="btn" onclick="removeLink(this)"><i class="fa-solid fa-trash"></i></a>
                                     </div>
                                 @endforeach
                             @endif
 
                             <div class="form-group input-group form-group-alt">
                                 {{ Form::text('links[]', '', ['class' => 'form-control']) }}
-                                <a class="btn" onclick="removeLink(this)"><img src="/images/icons/trash.svg"></a>
+                                <a class="btn" onclick="removeLink(this)"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </div>
 
@@ -363,8 +362,8 @@
             const deleteLink = document.createElement("a");
             deleteLink.setAttribute("onclick", "removeLink(this)");
 
-            const deleteImage = document.createElement("img");
-            deleteImage.src = "/images/icons/trash.svg";
+            const deleteImage = document.createElement("i");
+            deleteImage.classList = "fa-solid fa-trash";
 
             deleteLink.appendChild(deleteImage);
             deleteButton.appendChild(deleteLink);

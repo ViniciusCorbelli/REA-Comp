@@ -32,6 +32,14 @@
                         <li class="nav-item">
                             {{ Form::select('topic_id', $topics, old('topic_id'), ['class' => 'form-control', 'id' => 'topic_id']) }}
                         </li>
+                        <li class="nav-item">
+                            <select class="form-control" id="order">
+                                <option value="score">{{ __('index.order.score') }}</option>
+                                <option value="comments">{{ __('index.order.comments') }}</option>
+                                <option value="favorities">{{ __('index.order.favorities') }}</option>
+                                <option value="created_at">{{ __('index.order.created_at') }}</option>
+                            </select>
+                        </li>
                         <li class="nav-item" onclick="search()">
                             <button class="btn btn-success" style="margin-left: 10px">
                                 <i class="fa fa-search"></i>
@@ -48,13 +56,15 @@
         const repositories = document.querySelector("#repositories");
         const loading = document.querySelector('.loading');
 
-        function search() {
+        function search(page = 1) {
             showLoading();
 
             const token = '{{ csrf_token() }}';
             fetch('{{ route('search') }}?' + new URLSearchParams({
                     q: document.getElementById("search").value,
                     topic_id: document.getElementById("topic_id").value,
+                    order: document.getElementById("order").value,
+                    page: page,
                 }), {
                     method: 'get',
                     headers: {
@@ -67,7 +77,7 @@
                     return response.json();
                 })
                 .then(json => {
-                    if (json.length == 0) {
+                    if (json.data.length == 0) {
                         repositories.innerHTML = `<div class="text-center" style="width: 100%">
                     <div class="card iq-file-manager">
                         <div class="card-body card-thumbnail">
@@ -83,9 +93,15 @@
                         return;
                     }
 
-                    json.forEach(function(repository) {
+                    const htmlToAppend = `<h4>Total de resultados: ` + json.total + `</h4>`
+
+                    repositories.innerHTML = repositories.innerHTML + htmlToAppend;
+
+                    json.data.forEach(function(repository) {
                         showCard(repository)
                     });
+                    createPagination(json)
+
                 })
                 .catch(error => console.error(error));
         }
@@ -120,11 +136,11 @@
                                 <div class="form-group row">
                                     <div class="col">
                                         <div class="rate">
-                                            <label title="text" class="` + (repository.score >= 1 ? 'rated-user' : '') + `"></label>
-                                            <label title="text" class="` + (repository.score >= 2 ? 'rated-user' : '') + `"></label>
-                                            <label title="text" class="` + (repository.score >= 3 ? 'rated-user' : '') + `"></label>
-                                            <label title="text" class="` + (repository.score >= 4 ? 'rated-user' : '') + `"></label>
                                             <label title="text" class="` + (repository.score >= 5 ? 'rated-user' : '') + `"></label>
+                                            <label title="text" class="` + (repository.score >= 4 ? 'rated-user' : '') + `"></label>
+                                            <label title="text" class="` + (repository.score >= 3 ? 'rated-user' : '') + `"></label>
+                                            <label title="text" class="` + (repository.score >= 2 ? 'rated-user' : '') + `"></label>
+                                            <label title="text" class="` + (repository.score >= 1 ? 'rated-user' : '') + `"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -146,6 +162,34 @@
                 </div>
             </div>`
 
+            repositories.innerHTML = repositories.innerHTML + htmlToAppend;
+        }
+
+        function createPagination(json) {
+            var li = ``;
+            json.links.forEach(function(link) {
+                classe = 'pointer'
+                if (link.active) {
+                    classe = 'active'
+                }
+
+                var event = ''
+                var page = null;
+                if (link.url) {
+                    var urlParams = new URLSearchParams(new URL(link.url).search);
+                    page = urlParams.get('page');
+                    event = 'onclick="search(' + page + ')"'
+                } else {
+                    classe = 'disabled'
+                }
+
+                li += `<li class="page-item ` + classe + `" aria-current="page" ` + event + `><span class="page-link">` + link.label + `</span></li>`
+            })
+            const htmlToAppend = `<nav>
+                    <ul class="pagination">
+                        ` + li + `
+                    </ul>
+                </nav>`
             repositories.innerHTML = repositories.innerHTML + htmlToAppend;
         }
 

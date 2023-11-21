@@ -18,7 +18,9 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RateController;
 use App\Http\Controllers\RepositoryController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,3 +118,15 @@ Route::group(['middleware' => 'auth'], function () {
     // Favority Module
     Route::resource('comments', CommentController::class);
 });
+
+Route::get('clean', function(){
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Storage::deleteDirectory('tmp');
+});
+
+/*
+Route::get('deploy', function(){
+    Artisan::call('migrate');
+});
+*/

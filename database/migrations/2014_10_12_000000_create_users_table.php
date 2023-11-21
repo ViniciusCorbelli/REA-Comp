@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('user_type')->default(User::USER_TYPE_USER);
             $table->string('password');
             $table->string('status')->default('pending');
+            $table->integer('storage')->default(1024 * 1024);
             $table->rememberToken();
             $table->timestamps();
         });

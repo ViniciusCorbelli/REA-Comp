@@ -78,40 +78,6 @@
                                     {{ Form::text('last_name', old('last_name'), ['class' => 'form-control', 'required']) }}
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="form-label" for="add1">{{ __('users.street') }}:</label>
-                                    {{ Form::text('userProfile[street]', old('userProfile[street]'), ['class' => 'form-control', 'id' => 'add1']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="form-label" for="number">{{ __('users.number') }}:</label>
-                                    {{ Form::text('userProfile[number]', old('userProfile[number]'), ['class' => 'form-control', 'id' => 'number']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="form-label" for="additional_info">{{ __('users.additional_info') }}:</label>
-                                    {{ Form::text('userProfile[additional_info]', old('userProfile[additional_info]'), ['class' => 'form-control', 'id' => 'additional_info']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="form-label" for="neighborhood">{{ __('users.neighborhood') }}:</label>
-                                    {{ Form::text('userProfile[neighborhood]', old('userProfile[neighborhood]'), ['class' => 'form-control', 'id' => 'neighborhood']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="form-label" for="state">{{ __('users.state') }}:</label>
-                                    {{ Form::text('userProfile[state]', old('userProfile[state]'), ['class' => 'form-control', 'id' => 'state']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="form-label" for="city">{{ __('users.city') }}:</label>
-                                    {{ Form::text('userProfile[city]', old('userProfile[city]'), ['class' => 'form-control', 'id' => 'city']) }}
-                                </div>
-                                <div class="form-group col-sm-12">
-                                    <label class="form-label" id="country">{{ __('users.country') }}:</label>
-                                    {{ Form::text('userProfile[country]', old('userProfile[country]'), ['class' => 'form-control', 'id' => 'country']) }}
-
-                                </div>
-                                <div class="form-group col-sm-12">
-                                    <label class="form-label" id="zipcode">{{ __('users.zipcode') }}:</label>
-                                    {{ Form::text('userProfile[zipcode]', old('userProfile[zipcode]'), ['class' => 'form-control', 'id' => 'zipcode']) }}
-
-                                </div>
-                                <div class="form-group col-md-6">
                                     <label class="form-label" for="phone_number">{{ __('users.phone_number') }}:</label>
                                     {{ Form::text('phone_number', old('phone_number'), ['class' => 'form-control', 'id' => 'phone_number']) }}
                                 </div>

@@ -21,7 +21,7 @@ class DashboardController extends Controller {
 
         $storage = [];
         $storage['used'] = $files->sum('size');
-        $storage['total'] = Auth::user()->userProfile()->first()->storage;
+        $storage['total'] = Auth::user()->storage ?? 0;
 
         $imageMimes = ['png', 'jpg', 'jpeg', 'svg'];
         $images = $files->whereIn('mime_type', $imageMimes);

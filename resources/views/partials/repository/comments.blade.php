@@ -16,8 +16,7 @@
                                         <a class="btn btn-primary btn-icon btn-sm rounded-pill" href="javascript:void(0)"
                                             role="button" onclick="editComment({{ $comment->id }})">
                                             <span class="btn-inner">
-                                                <img class="img-fluid" src="{{ asset('images/icons/edit.svg') }}"
-                                                    loading="lazy">
+                                                <i class="fa-regular fa-pen-to-square"></i>
                                             </span>
                                         </a>
                                     </div>
@@ -26,7 +25,7 @@
                                     <a class="btn btn-primary btn-icon btn-sm rounded-pill" href="javascript:void(0)"
                                         role="button" onclick="deleteComment({{ $comment->id }})">
                                         <span class="btn-inner">
-                                            <img class="img-fluid" src="{{ asset('images/icons/trash.svg') }}" loading="lazy">
+                                            <i class="fa-solid fa-trash"></i>
                                         </span>
                                     </a>
                                 @endcan
@@ -99,7 +98,7 @@
         commentActions.innerHTML = `
             <a class="btn btn-success btn-icon btn-sm rounded-pill" href="javascript:void(0)" role="button" onclick="updateComment(${id})">
                 <span class="btn-inner">
-                    <img class="img-fluid" src="{{ asset('images/icons/check.svg') }}" loading="lazy">
+                    <i class="fa-solid fa-check"></i>
                 </span>
             </a>
         `;

@@ -31,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'status',
         'email',
         'password',
+        'storage'
     ];
 
     /**
@@ -60,10 +61,6 @@ class User extends Authenticatable implements MustVerifyEmail
     
     public function getFullNameAttribute() {
         return $this->first_name . ' ' . $this->last_name;
-    }
-
-    public function userProfile() {
-        return $this->hasOne(UserProfile::class, 'user_id', 'id');
     }
 
     public function repositories() {

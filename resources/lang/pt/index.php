@@ -21,4 +21,10 @@ return [
         'title' => 'Nenhum REA encontrado',
         'text' => 'Nenhum REA foi encontrado com está busca, tente alterar as palavras chaves.'
     ],
+    'order' => [
+        'score' => 'Ordenar por nota',
+        'comments' => 'Ordenar por quantidade de comentarios',
+        'favorities' => 'Ordenar por quantidade de favoritos',
+        'created_at' => 'Ordenar por data de criação',
+    ]
 ];

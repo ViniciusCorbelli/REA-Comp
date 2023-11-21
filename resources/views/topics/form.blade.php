@@ -25,7 +25,7 @@
                 <div class="new-user-info">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label class="form-label" for="name">{{ __('topic.name') }}: <span class="text-danger">*</span></label>
+                            <label class="form-label" for="name">{{ __('topics.title') }}: <span class="text-danger">*</span></label>
                             {{ Form::text('name', old('name'), ['class' => 'form-control', 'required']) }}
                         </div>
                     </div>
