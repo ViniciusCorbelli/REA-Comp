@@ -17,18 +17,6 @@ class UsersDataTable extends DataTable
     public function dataTable($query) {
         return datatables()
             ->eloquent($query)
-            ->editColumn('status', function ($query) {
-                $status = 'warning';
-                switch ($query->status) {
-                    case User::ACTIVE:
-                        $status = 'primary';
-                        break;
-                    case User::INACTIVE:
-                        $status = 'danger';
-                        break;
-                }
-                return '<span class="text-capitalize badge bg-' . $status . '">' . __('users.' . $query->status) . '</span>';
-            })
             ->editColumn('created_at', function ($query) {
                 return date('Y/m/d', strtotime($query->created_at));
             })
@@ -36,8 +24,7 @@ class UsersDataTable extends DataTable
                 $sql = "CONCAT(users.first_name,' ',users.last_name)  like ?";
                 return $query->whereRaw($sql, ["%{$keyword}%"]);
             })
-            ->addColumn('action', 'users.action')
-            ->rawColumns(['action', 'status']);
+            ->addColumn('action', 'users.action');
     }
 
     /**
@@ -79,7 +66,6 @@ class UsersDataTable extends DataTable
             ['data' => 'full_name', 'name' => 'full_name', 'title' => __('users.datatable.name'), 'orderable' => false],
             ['data' => 'phone_number', 'name' => 'phone_number', 'title' => __('users.datatable.phone')],
             ['data' => 'email', 'name' => 'email', 'title' => __('users.datatable.mail')],
-            ['data' => 'status', 'name' => 'status', 'title' => __('users.datatable.status')],
             ['data' => 'created_at', 'name' => 'created_at', 'title' => __('users.datatable.create_date')],
             Column::computed('action', __('users.datatable.action'))
                 ->exportable(false)

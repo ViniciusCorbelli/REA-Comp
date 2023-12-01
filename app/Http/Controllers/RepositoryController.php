@@ -33,7 +33,7 @@ class RepositoryController extends Controller {
     public function create() {
         removeSession(FileUploadController::FILE_KEY);
 
-        $topics = Topic::pluck('name', 'id');
+        $topics = Topic::orderBy('name')->pluck('name', 'id');
         $data = null;
 
         return view('repositories.form', compact('data', 'topics'));

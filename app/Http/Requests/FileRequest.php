@@ -26,6 +26,7 @@ class FileRequest extends FormRequest
      */
     public function rules() {
         return [
+            'file' => 'required|file|mimes:pdf,doc,docx,png,jpg,jpeg,svg,mp4,ppt,txt|max:' . getStoreFree(),
         ];
     }
 

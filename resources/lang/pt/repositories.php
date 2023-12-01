@@ -19,7 +19,7 @@ return [
     'drop_files_here' => 'Jogue o arquivo aqui',
     'find' => 'Procurar',
     'titleRepository' => 'Título',
-    'topic' => 'Topico',
+    'topic' => 'Tópico',
     'description' => 'Descrição',
     'not_found' => [
         'title' => 'Nenhum REA encontrado',

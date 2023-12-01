@@ -212,21 +212,27 @@
         });
 
         resumable.on('fileSuccess', function(file, response) {
-            response = JSON.parse(response)
+            try {
+                response = JSON.parse(response)
 
-            if (response.status == false) {
-                showError(file)
-                return;
+                if (response.status == false) {
+                    showError(file, response)
+                    return;
+                }
+
+                showSuccess(file, response)
+
+                insertListFiles(file, response)
+            } catch (e) {
+                let error = {}
+                error.msg = 'Ocorreu um erro na validação do arquivo.'
+                showError(file, error)
             }
-
-            showSuccess(file, response)
-
-            insertListFiles(file, response)
 
         });
 
         resumable.on('fileError', function(file, response) {
-            showError(file)
+            showError(file, response)
         });
 
         let progress = document.querySelector('.progress-upload');
@@ -281,7 +287,7 @@
                 .uniqueIdentifier + `"><a href="` + response.path + `">` + file.fileName + `</a></p>`;
         }
 
-        function showError(file) {
+        function showError(file, response) {
             const progressDiv = progress.querySelector('#progress-div-' + file.uniqueIdentifier);
             progressDiv.innerHTML = `<div class="progress-upload-item-status">
                     <svg width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
@@ -293,6 +299,8 @@
                     </g>
                     </svg>
                   </div>`
+
+            alert(response.msg)
         }
 
         function showProgress(file) {

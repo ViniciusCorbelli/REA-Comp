@@ -50,7 +50,7 @@
                               <button type="submit" class="btn btn-primary">{{ __('auth.sign_in') }}</button>
                            </div>
                            <p class="mt-3 text-center">
-                              {{ __('auth.dont_have_account') }} <a href="{{""}}" class="text-underline">{{ __('auth.click_here_to_sign_up') }}</a>
+                              {{ __('auth.dont_have_account') }} <a href="{{ route('register') }}" class="text-underline">{{ __('auth.click_here_to_sign_up') }}</a>
                            </p>
                         </form>
                      </div>

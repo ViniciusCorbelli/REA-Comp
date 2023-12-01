@@ -19,6 +19,7 @@ class FileUploadController extends Controller {
 
         if (!$receiver->isUploaded()) {
             return [
+                'msg' => 'Ocorreu um erro ao salvar o arquivo.',
                 'status' => false,
             ];
         }
@@ -31,6 +32,7 @@ class FileUploadController extends Controller {
             if (!checkAllowUpload($fileSize)) {
                 unlink($file->getPathname());
                 return [
+                    'msg' => 'Arquivo muito grande.',
                     'status' => false,
                 ];
             }

@@ -51,7 +51,7 @@ function getImage($mime_type = 'default') {
     return $img;
 }
 
-function checkAllowUpload($fileSize) {
+function getStoreFree() {
     $files = Auth::user()
         ->repositories()
         ->with('files')
@@ -59,7 +59,9 @@ function checkAllowUpload($fileSize) {
         ->flatMap(function ($repository) {
             return $repository->files;
         });
-    $storageFree = Auth::user()->storage - $files->sum('size');
+    return Auth::user()->storage - $files->sum('size');
+}
 
-    return $fileSize < $storageFree;
+function checkAllowUpload($fileSize) {
+    return $fileSize < getStoreFree();
 }

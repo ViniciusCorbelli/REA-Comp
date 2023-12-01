@@ -18,8 +18,7 @@
                            </svg>
                            <h4 class="logo-title ms-3">{{env('APP_NAME')}}</h4>
                         </a>
-                        <h2 class="mb-2 text-center">{{ __('auth.reset_password') }}</h2>
-                        <p class="text-center">{{ __('auth.create_account') }}</p>
+                        <h2 class="mb-2 text-center">{{ __('auth.create_account') }}</h2>
                         <x-auth-session-status class="mb-4" :status="session('status')" />
 
                         <!-- Validation Errors -->
@@ -29,7 +28,7 @@
                            <div class="row">
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="full-name" class="form-label">{{ __('auth.full_name') }}</label>
+                                    <label for="full-name" class="form-label">{{ __('auth.first_name') }}</label>
                                     <input id="name"  name="first_name" value="{{old('first_name')}}" class="form-control" type="text" placeholder=" "  required autofocus >
                                  </div>
                               </div>
@@ -48,13 +47,14 @@
                               <div class="col-lg-6">
                                  <div class="form-group">
                                     <label for="phone" class="form-label">{{ __('auth.phone_no') }}</label>
-                                    <input class="form-control" type="text" name="phone_number" placeholder=" ">
+                                    <input class="form-control" type="text" name="phone_number" oninput="formatarNumero(this)" maxlength="15">
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
                                     <label for="password" class="form-label">{{ __('auth.password') }}</label>
                                     <input class="form-control" type="password" placeholder=" " id="password" name="password" required autocomplete="new-password" >
+                                    <small>Mínimo de 8 caracteres</small>
                                  </div>
                               </div>
                               <div class="col-lg-6">
@@ -87,5 +87,22 @@
             </div>
          </div>   
       </div>
+      <script>
+         function formatarNumero(input) {
+            const numeroLimpo = input.value.replace(/\D/g, '');
+            const numeroFormatado = formatarTelefone(numeroLimpo);
+
+            input.value = numeroFormatado;
+         }
+
+         function formatarTelefone(numero) {
+            return numero.replace(/^(\d{0,2})(\d{0,5})(\d{0,4})$/, function(match, p1, p2, p3) {
+               var parte1 = p1 ? '(' + p1 : '';
+               var parte2 = p2 ? ') ' + p2 : '';
+               var parte3 = p3 ? '-' + p3 : '';
+               return parte1 + parte2 + parte3;
+            });
+         }
+      </script>
    </section>
 </x-guest-layout>
