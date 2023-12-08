@@ -12,13 +12,13 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
-    'title' => 'Topic',
-    'store' => 'Topic info added successfully!',
-    'update' => 'Topic info updated successfully!',
+    'title' => 'Tipo',
+    'store' => 'Informações do tipo adicionadas com sucesso!',
+    'update' => 'Informações do tipo atualizadas com sucesso!',
 
     'datatable' => [
-        'name' => 'Name',
-        'create_date' => 'Create Date',
-        'action' => 'Action',
+        'name' => 'Nome',
+        'create_date' => 'Data de Cadastro',
+        'action' => 'Ação',
     ]
 ];

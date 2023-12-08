@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RepositoryRequest;
 use App\Models\Topic;
 use App\Models\Repository;
+use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -34,9 +35,10 @@ class RepositoryController extends Controller {
         removeSession(FileUploadController::FILE_KEY);
 
         $topics = Topic::orderBy('name')->pluck('name', 'id');
+        $types = Type::orderBy('name')->pluck('name', 'id');
         $data = null;
 
-        return view('repositories.form', compact('data', 'topics'));
+        return view('repositories.form', compact('data', 'topics', 'types'));
     }
 
     /**
@@ -85,9 +87,10 @@ class RepositoryController extends Controller {
         $id = $repository->id;
         $data = Repository::with(['files', 'links'])->findOrFail($id);
 
-        $topics = Topic::pluck('name', 'id');
+        $topics = Topic::orderBy('name')->pluck('name', 'id');
+        $types = Type::orderBy('name')->pluck('name', 'id');
 
-        return view('repositories.form', compact('data', 'id', 'topics'));
+        return view('repositories.form', compact('data', 'id', 'topics', 'types'));
     }
 
     /**
@@ -100,9 +103,10 @@ class RepositoryController extends Controller {
         $id = $repository->id;
         $data = Repository::with(['files', 'links'])->findOrFail($id);
 
-        $topics = Topic::pluck('name', 'id');
+        $topics = Topic::orderBy('name')->pluck('name', 'id');
+        $types = Type::orderBy('name')->pluck('name', 'id');
 
-        return view('repositories.form', compact('data', 'id', 'topics'));
+        return view('repositories.form', compact('data', 'id', 'topics', 'types'));
     }
 
     /**

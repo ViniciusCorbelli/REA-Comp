@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use App\Models\Repository;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller {
@@ -11,8 +12,9 @@ class HomeController extends Controller {
     public function index(Request $request) {
 
         $topics = Topic::orderBy('name')->pluck('name', 'id');
+        $types = Type::orderBy('name')->pluck('name', 'id');
 
-        return view('index', compact('topics'));
+        return view('index', compact('topics', 'types'));
     }
 
     public function search(Request $request) {

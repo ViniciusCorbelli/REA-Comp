@@ -12,9 +12,9 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
-    'title' => 'Topic',
-    'store' => 'Topic info added successfully!',
-    'update' => 'Topic info updated successfully!',
+    'title' => 'Type',
+    'store' => 'Type info added successfully!',
+    'update' => 'Type info updated successfully!',
 
     'datatable' => [
         'name' => 'Name',

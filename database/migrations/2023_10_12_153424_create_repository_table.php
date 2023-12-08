@@ -16,9 +16,10 @@ class CreateRepositoryTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->foreignId('topic_id')->cascade('delete');
+            $table->foreignId('topic_id')->references('id')->on('topics')->onDelete('cascade');
+            $table->foreignId('type_id')->references('id')->on('types')->onDelete('cascade');
             $table->fullText(['title', 'description']);
-            $table->foreignId('user_id')->cascade('delete');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FavorityController;
 use App\Http\Controllers\FileUploadController;
@@ -101,6 +102,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Topic Module
     Route::resource('topics', TopicController::class);
+
+    // Topic Module
+    Route::resource('types', TypeController::class);
 
     // Repository Module
     Route::resource('repositories', RepositoryController::class);

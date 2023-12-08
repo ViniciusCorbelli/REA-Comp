@@ -20,6 +20,7 @@ return [
     'find' => 'Find',
     'titleRepository' => 'Title',
     'topic' => 'Topic',
+    'type' => 'Tyoe',
     'description' => 'Description',
     'not_found' => [
         'title' => 'No OER found',

@@ -33,6 +33,9 @@
                             {{ Form::select('topic_id', $topics, old('topic_id'), ['class' => 'form-control', 'id' => 'topic_id']) }}
                         </li>
                         <li class="nav-item">
+                            {{ Form::select('type_id', $types, old('type_id'), ['class' => 'form-control', 'id' => 'type_id']) }}
+                        </li>
+                        <li class="nav-item">
                             <select class="form-control" id="order">
                                 <option value="score">{{ __('index.order.score') }}</option>
                                 <option value="comments">{{ __('index.order.comments') }}</option>
@@ -63,6 +66,7 @@
             fetch('{{ route('search') }}?' + new URLSearchParams({
                     q: document.getElementById("search").value,
                     topic_id: document.getElementById("topic_id").value,
+                    tyoe_id: document.getElementById("type_id").value,
                     order: document.getElementById("order").value,
                     page: page,
                 }), {

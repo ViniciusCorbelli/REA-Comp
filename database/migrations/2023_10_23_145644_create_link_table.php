@@ -17,7 +17,7 @@ class CreateLinkTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('url');
-            $table->foreignId('repository_id')->cascade('delete');
+            $table->foreignId('repository_id')->references('id')->on('repositories')->onDelete('cascade');
 
             $table->nullableTimestamps();
         });

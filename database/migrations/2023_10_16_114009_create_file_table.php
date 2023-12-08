@@ -24,7 +24,7 @@ class CreateFileTable extends Migration
             $table->string('mime_type')->nullable();
             $table->string('path');
             $table->integer('size');
-            $table->foreignId('repository_id')->cascade('delete');
+            $table->foreignId('repository_id')->references('id')->on('repositories')->onDelete('cascade');
 
             $table->nullableTimestamps();
         });

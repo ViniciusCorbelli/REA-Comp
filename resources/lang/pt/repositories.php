@@ -20,6 +20,7 @@ return [
     'find' => 'Procurar',
     'titleRepository' => 'Título',
     'topic' => 'Tópico',
+    'type' => 'Tipo',
     'description' => 'Descrição',
     'not_found' => [
         'title' => 'Nenhum REA encontrado',

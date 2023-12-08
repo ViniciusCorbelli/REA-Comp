@@ -14,8 +14,8 @@ class CreateFavoriteTable extends Migration
      */
     public function up() {
         Schema::create('favorities', function (Blueprint $table) {
-            $table->foreignId('user_id')->cascade('delete');
-            $table->foreignId('repository_id')->cascade('delete');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('repository_id')->references('id')->on('repositories')->onDelete('cascade');
 
             $table->nullableTimestamps();
         });

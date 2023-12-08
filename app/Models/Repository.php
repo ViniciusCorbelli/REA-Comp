@@ -21,6 +21,7 @@ class Repository extends Authenticatable implements MustVerifyEmail
         'title',
         'description',
         'topic_id',
+        'type_id',
         'user_id'
     ];
 

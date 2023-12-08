@@ -36,10 +36,18 @@
                                 {{ Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => 'Título', 'required']) }}
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <label class="form-label" for="description">{{ __('repositories.topic') }}: <span
-                                        class="text-danger">*</span></label>
-                                {{ Form::select('topic_id', $topics, old('topic_id'), ['class' => 'form-control']) }}
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="description">{{ __('repositories.topic') }}: <span
+                                            class="text-danger">*</span></label>
+                                    {{ Form::select('topic_id', $topics, old('topic_id'), ['class' => 'form-control']) }}
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label class="form-label" for="description">{{ __('repositories.type') }}: <span
+                                            class="text-danger">*</span></label>
+                                    {{ Form::select('type_id', $types, old('type_id'), ['class' => 'form-control']) }}
+                                </div>
                             </div>
 
                             <div class="form-group col-md-12">
