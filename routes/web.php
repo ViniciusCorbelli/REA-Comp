@@ -92,6 +92,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/repository/{id}', [HomeController::class, 'repository'])->name('repository');
 Route::get('search', [HomeController::class, 'search'])->name('search');
+Route::post('download', [HomeController::class, 'download'])->name('download');
 
 Route::group(['middleware' => 'auth'], function () {
     // Dashboard Routes
@@ -126,6 +127,10 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('clean', function(){
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('cache:cache');
+    Artisan::call('config:cache');
+    Artisan::call('route:cache');
     Storage::deleteDirectory('tmp');
 });
 

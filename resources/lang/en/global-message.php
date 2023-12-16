@@ -27,6 +27,8 @@ return [
     'video' => 'Video',
     'documents' => 'Documents',
     'other' => 'Other',
+    'used' => 'Used',
+    'free' => 'Free',
     'or' => 'or',
     'name' => 'Name',
     'size' => 'Size',

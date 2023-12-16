@@ -50,6 +50,10 @@
                             type="button" role="tab" aria-controls="nav-review" aria-selected="false"
                             tabindex="-1">{{ __('repositories.comments') }}
                             ({{ count($repository->comments()->get()) }})</button>
+                        <button class="nav-link" id="nav-statistics-tab" data-bs-toggle="tab" data-bs-target="#nav-statistics"
+                            type="button" role="tab" aria-controls="nav-statistics" aria-selected="false"
+                            tabindex="-1">{{ __('repositories.statistics') }}
+                        </button>
                     </div>
                 </nav>
                 <div class="tab-content mt-4" id="nav-tabContent">
@@ -71,6 +75,9 @@
                     </div>
                     <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
                         @include('partials.repository.comments')
+                    </div>
+                    <div class="tab-pane fade" id="nav-statistics" role="tabpanel" aria-labelledby="nav-statistics-tab">
+                        @include('partials.repository.statistics')
                     </div>
                 </div>
             </div>

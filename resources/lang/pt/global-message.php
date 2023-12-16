@@ -29,6 +29,8 @@ return [
     'video' => 'Video',
     'documents' => 'Documento',
     'other' => 'Outros',
+    'used' => 'Usado',
+    'free' => 'Livre',
     'or' => 'Ou',
     'name' => 'Nome',
     'size' => 'Tamanho',

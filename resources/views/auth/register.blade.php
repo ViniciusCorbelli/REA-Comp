@@ -28,14 +28,20 @@
                            <div class="row">
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="full-name" class="form-label">{{ __('auth.first_name') }}</label>
+                                    <label for="full-name" class="form-label">{{ __('auth.first_name') }} <span class="text-danger">*</span></label>
                                     <input id="name"  name="first_name" value="{{old('first_name')}}" class="form-control" type="text" placeholder=" "  required autofocus >
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="last-name" class="form-label">{{ __('auth.last_name') }}</label>
+                                    <label for="last-name" class="form-label">{{ __('auth.last_name') }} <span class="text-danger">*</span></label>
                                     <input class="form-control" type="text" name="last_name" placeholder=" " value="{{old('last_name')}}" required>
+                                 </div>
+                              </div>
+                              <div class="col-lg-6">
+                                 <div class="form-group">
+                                    <label for="username" class="form-label">{{ __('auth.user_name') }} <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" name="username" required>
                                  </div>
                               </div>
                               <div class="col-lg-6">
@@ -46,20 +52,14 @@
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="phone" class="form-label">{{ __('auth.phone_no') }}</label>
-                                    <input class="form-control" type="text" name="phone_number" oninput="formatarNumero(this)" maxlength="15">
-                                 </div>
-                              </div>
-                              <div class="col-lg-6">
-                                 <div class="form-group">
-                                    <label for="password" class="form-label">{{ __('auth.password') }}</label>
+                                    <label for="password" class="form-label">{{ __('auth.password') }} <span class="text-danger">*</span></label>
                                     <input class="form-control" type="password" placeholder=" " id="password" name="password" required autocomplete="new-password" >
                                     <small>Mínimo de 8 caracteres</small>
                                  </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="confirm-password" class="form-label">{{ __('auth.confirm_password') }}</label>
+                                    <label for="confirm-password" class="form-label">{{ __('auth.confirm_password') }} <span class="text-danger">*</span></label>
                                     <input id="password_confirmation" class="form-control" type="password" placeholder=" " name="password_confirmation" required >
                                  </div>
                               </div>
@@ -87,22 +87,5 @@
             </div>
          </div>   
       </div>
-      <script>
-         function formatarNumero(input) {
-            const numeroLimpo = input.value.replace(/\D/g, '');
-            const numeroFormatado = formatarTelefone(numeroLimpo);
-
-            input.value = numeroFormatado;
-         }
-
-         function formatarTelefone(numero) {
-            return numero.replace(/^(\d{0,2})(\d{0,5})(\d{0,4})$/, function(match, p1, p2, p3) {
-               var parte1 = p1 ? '(' + p1 : '';
-               var parte2 = p2 ? ') ' + p2 : '';
-               var parte3 = p3 ? '-' + p3 : '';
-               return parte1 + parte2 + parte3;
-            });
-         }
-      </script>
    </section>
 </x-guest-layout>

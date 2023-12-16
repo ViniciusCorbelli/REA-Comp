@@ -66,7 +66,7 @@
             fetch('{{ route('search') }}?' + new URLSearchParams({
                     q: document.getElementById("search").value,
                     topic_id: document.getElementById("topic_id").value,
-                    tyoe_id: document.getElementById("type_id").value,
+                    type_id: document.getElementById("type_id").value,
                     order: document.getElementById("order").value,
                     page: page,
                 }), {

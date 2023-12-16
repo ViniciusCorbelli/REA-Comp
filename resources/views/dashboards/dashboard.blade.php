@@ -117,115 +117,19 @@
                     <div class="card-header">
                         <h4 class="mb-0">{{ __('dashboard.storage_details') }}</h4>
                     </div>
+
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div id="storage-chart" style="min-height: 194.417px;">
-                                    <div id="apexchartsj6ghvbht"
-                                        class="apexcharts-canvas apexchartsj6ghvbht apexcharts-theme-light"
-                                        style="width: 439px; height: 194.417px;"><svg id="SvgjsSvg1175" width="439"
-                                            height="194.41666666666669" xmlns="http://www.w3.org/2000/svg"
-                                            version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                            xmlns:svgjs="http://svgjs.dev" class="apexcharts-svg"
-                                            xmlns:data="ApexChartsNS" transform="translate(0, -20)"
-                                            style="background: transparent;">
-                                            <g id="SvgjsG1177" class="apexcharts-inner apexcharts-graphical"
-                                                transform="translate(36.583333333333314, -10)">
-                                                <defs id="SvgjsDefs1176">
-                                                    <clipPath id="gridRectMaskj6ghvbht">
-                                                        <rect id="SvgjsRect1179" width="371.83333333333337"
-                                                            height="377.83333333333337" x="-3" y="-1" rx="0"
-                                                            ry="0" opacity="1" stroke-width="0"
-                                                            stroke="none" stroke-dasharray="0" fill="#fff">
-                                                        </rect>
-                                                    </clipPath>
-                                                    <clipPath id="forecastMaskj6ghvbht"></clipPath>
-                                                    <clipPath id="nonForecastMaskj6ghvbht"></clipPath>
-                                                    <clipPath id="gridRectMarkerMaskj6ghvbht">
-                                                        <rect id="SvgjsRect1180" width="369.83333333333337"
-                                                            height="379.83333333333337" x="-2" y="-2" rx="0"
-                                                            ry="0" opacity="1" stroke-width="0"
-                                                            stroke="none" stroke-dasharray="0" fill="#fff">
-                                                        </rect>
-                                                    </clipPath>
-                                                </defs>
-                                                <g id="SvgjsG1181" class="apexcharts-radialbar">
-                                                    <g id="SvgjsG1182">
-                                                        <g id="SvgjsG1183" class="apexcharts-tracks">
-                                                            <g id="SvgjsG1184"
-                                                                class="apexcharts-radialbar-track apexcharts-track"
-                                                                rel="1">
-                                                                <path id="apexcharts-radialbarTrack-0"
-                                                                    d="M 68.8821138211382 182.91666666666669 A 114.03455284552848 114.03455284552848 0 0 1 296.95121951219517 182.91666666666669"
-                                                                    fill="none" fill-opacity="1"
-                                                                    stroke="#3a57e81a" stroke-opacity="1"
-                                                                    stroke-linecap="butt"
-                                                                    stroke-width="38.425406504065045"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area"
-                                                                    data:pathOrig="M 68.8821138211382 182.91666666666669 A 114.03455284552848 114.03455284552848 0 0 1 296.95121951219517 182.91666666666669">
-                                                                </path>
-                                                            </g>
-                                                        </g>
-                                                        <g id="SvgjsG1186">
-                                                            <g id="SvgjsG1191"
-                                                                class="apexcharts-series apexcharts-radial-series"
-                                                                seriesName="usedxofx100GB" rel="1"
-                                                                data:realIndex="0">
-                                                                <path id="SvgjsPath1192"
-                                                                    d="M 68.8821138211382 182.91666666666669 A 114.03455284552848 114.03455284552848 0 0 1 263.5512722733156 102.2820610600178"
-                                                                    fill="none" fill-opacity="0.85"
-                                                                    stroke="rgba(58,87,232,0.85)" stroke-opacity="1"
-                                                                    stroke-linecap="butt"
-                                                                    stroke-width="39.613821138211385"
-                                                                    stroke-dasharray="0"
-                                                                    class="apexcharts-radialbar-area apexcharts-radialbar-slice-0"
-                                                                    data:angle="135" data:value="75" index="0"
-                                                                    j="0"
-                                                                    data:pathOrig="M 68.8821138211382 182.91666666666669 A 114.03455284552848 114.03455284552848 0 0 1 263.5512722733156 102.2820610600178">
-                                                                </path>
-                                                            </g>
-                                                            <circle id="SvgjsCircle1187" r="89.82184959349595"
-                                                                cx="182.91666666666669" cy="182.91666666666669"
-                                                                class="apexcharts-radialbar-hollow"
-                                                                fill="transparent"></circle>
-                                                            <g id="SvgjsG1188" class="apexcharts-datalabels-group"
-                                                                transform="translate(0, 0) scale(1)"
-                                                                style="opacity: 1;"><text id="SvgjsText1189"
-                                                                    font-family="Helvetica, Arial, sans-serif"
-                                                                    x="182.91666666666669" y="202.91666666666669"
-                                                                    text-anchor="middle" dominant-baseline="auto"
-                                                                    font-size="16px" font-weight="600" fill="#3a57e8"
-                                                                    class="apexcharts-text apexcharts-datalabel-label"
-                                                                    style="font-family: Helvetica, Arial, sans-serif;">{{ __('global-message.used of') }}
-                                                                    {{ formatSizeUnits($storage['total']) }}</text><text
-                                                                    id="SvgjsText1190"
-                                                                    font-family="Helvetica, Arial, sans-serif"
-                                                                    x="182.91666666666669" y="173.91666666666669"
-                                                                    text-anchor="middle" dominant-baseline="auto"
-                                                                    font-size="40px" font-weight="400" fill="#373d3f"
-                                                                    class="apexcharts-text apexcharts-datalabel-value"
-                                                                    style="font-family: Helvetica, Arial, sans-serif;">{{ formatSizeUnits($storage['used']) }}</text>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                                <line id="SvgjsLine1193" x1="0" y1="0"
-                                                    x2="365.83333333333337" y2="0" stroke="#b6b6b6"
-                                                    stroke-dasharray="0" stroke-width="1" stroke-linecap="butt"
-                                                    class="apexcharts-ycrosshairs"></line>
-                                                <line id="SvgjsLine1194" x1="0" y1="0"
-                                                    x2="365.83333333333337" y2="0" stroke-dasharray="0"
-                                                    stroke-width="0" stroke-linecap="butt"
-                                                    class="apexcharts-ycrosshairs-hidden"></line>
-                                            </g>
-                                            <g id="SvgjsG1178" class="apexcharts-annotations"></g>
-                                        </svg>
-                                        <div class="apexcharts-legend"></div>
-                                    </div>
-                                </div>
-                            </div>
+
+                        <div class="text-center">
+                            <canvas id="chart"></canvas>
+                            <h2>
+                                {{ formatSizeUnits($storage['used']) }}
+                            </h2>
+                            {{ __('global-message.used of') }} {{ formatSizeUnits($storage['total']) }}
                         </div>
+
+                        <hr>
+
                         <div class="d-flex flex flex-column gap-4">
                             <div class="d-flex gap-3">
                                 <span class="avatar-50 bg-soft-primary rounded">
@@ -333,4 +237,32 @@
             </div>
         </div>
     </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+      <script>
+        const ctx = document.getElementById('chart');
+      
+        const data = {
+            labels: [
+                '{{ __('global-message.used') }}',
+                '{{ __('global-message.free') }}'
+            ],
+            datasets: [{
+                data: [{{ $storage['used'] }}, {{ $storage['total'] - $storage['used'] }}],
+                backgroundColor: [
+                'rgb(0, 0, 255)',
+                'rgb(192, 192, 192)'
+                ],
+                hoverOffset: 2
+            }]
+        };
+
+        new Chart(ctx, {
+          type: 'doughnut',
+          data: data,
+        });
+      </script>
+      
+
 </x-app-layout>

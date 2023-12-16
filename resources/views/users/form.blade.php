@@ -19,10 +19,12 @@
                         <div class="header-title">
                             <h4 class="card-title">{{ $id !== null ? trans('global-message.update_form_title', ['form' => trans('users.title')]) : trans('global-message.add_form_title', ['form' => trans('users.title')]) }}</h4>
                         </div>
-                        <div class="card-action">
-                            <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary"
-                                role="button">{{ __('global-message.back') }}</a>
-                        </div>
+                        @can('viewAny', App\Models\User::class)
+                            <div class="card-action">
+                                <a href="{{ route('users.index') }}" class="btn btn-sm btn-primary"
+                                    role="button">{{ __('global-message.back') }}</a>
+                            </div>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="new-user-info">
@@ -36,10 +38,6 @@
                                     <label class="form-label" for="lname">{{ __('users.last_name') }}: <span
                                             class="text-danger">*</span></label>
                                     {{ Form::text('last_name', old('last_name'), ['class' => 'form-control', 'required']) }}
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="form-label" for="phone_number">{{ __('users.phone_number') }}:</label>
-                                    {{ Form::text('phone_number', old('phone_number'), ['class' => 'form-control', 'id' => 'phone_number']) }}
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="form-label" for="email">{{ __('users.email') }}: <span

@@ -39,7 +39,6 @@ return [
     'city' => 'City',
     'country' => 'Country',
     'zipcode' => 'Zip Code',
-    'phone_number' => 'Phone Number',
     'email' => 'Email',
     'security' => 'Security',
     'user_name' => 'User Name',

@@ -21,7 +21,6 @@ class UserTableSeeder extends Seeder
                 'username' => 'admin',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('password'),
-                'phone_number' => '+12398190255',
                 'email_verified_at' => now(),
                 'user_type' => User::USER_TYPE_ADMIN,
             ],

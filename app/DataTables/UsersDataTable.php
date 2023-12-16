@@ -64,7 +64,6 @@ class UsersDataTable extends DataTable
     protected function getColumns() {
         return [
             ['data' => 'full_name', 'name' => 'full_name', 'title' => __('users.datatable.name'), 'orderable' => false],
-            ['data' => 'phone_number', 'name' => 'phone_number', 'title' => __('users.datatable.phone')],
             ['data' => 'email', 'name' => 'email', 'title' => __('users.datatable.mail')],
             ['data' => 'created_at', 'name' => 'created_at', 'title' => __('users.datatable.create_date')],
             Column::computed('action', __('users.datatable.action'))

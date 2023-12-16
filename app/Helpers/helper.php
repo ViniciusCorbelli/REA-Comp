@@ -65,3 +65,7 @@ function getStoreFree() {
 function checkAllowUpload($fileSize) {
     return $fileSize < getStoreFree();
 }
+
+function randColor() {
+    return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+}

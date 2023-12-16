@@ -29,9 +29,9 @@ return [
     
     'create_account' => 'Crie sua conta.',
     'full_name' => 'Nome Completo',
-    'first_name' => 'Primeiro Nome',
+    'first_name' => 'Nome',
     'last_name' => 'Sobrenome',
-    'phone_no' => 'Número de Telefone',
+    'user_name' => 'Nome de Usuário',
     'password' => 'Senha',
     'confirm_password' => 'Confirmar Senha',
     'sign_up' => 'Registrar',

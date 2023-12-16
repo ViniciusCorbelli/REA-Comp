@@ -39,7 +39,6 @@ return [
     'city' => 'Cidade',
     'country' => 'País',
     'zipcode' => 'CEP',
-    'phone_number' => 'Número de Telefone',
     'email' => 'E-mail',
     'security' => 'Segurança',
     'user_name' => 'Nome de Usuário',

@@ -33,5 +33,17 @@ return [
         'description' => 'Description',
         'create_date' => 'Create Date',
         'action' => 'Action',
+    ],
+
+    'statistics' => 'Statistics',
+    'chart' => [
+        'downloads' => [
+            'title' => 'Downloads',
+            'description' => 'Number of downloads'
+        ],
+        'visits' => [
+            'title' => 'Visitas',
+            'description' => 'Number of Visits'
+        ]
     ]
 ];
