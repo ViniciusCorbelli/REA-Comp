@@ -34,7 +34,6 @@ class UserRequest extends FormRequest
                 $rules = [
                     'first_name' => 'required|max:255',
                     'last_name' => 'required|max:255',
-                    'username' => 'required|max:20',
                     'password' => 'required|confirmed|min:8',
                     'email' => 'required|max:191|email|unique:users',
                     'phone_number'=>'max:13',
@@ -45,7 +44,6 @@ class UserRequest extends FormRequest
                 $rules = [
                     'first_name' => 'required|max:255',
                     'last_name' => 'required|max:255',
-                    'username' => 'required|max:20',
                     'email' => 'required|max:191|email|unique:users,email,'.$user->id,
                     'phone_number'=>'max:13',
                     'password' => 'confirmed|min:8|nullable',

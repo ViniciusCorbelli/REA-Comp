@@ -23,9 +23,7 @@ class UserFactory extends Factory
     public function definition() {
         $fname = $this->faker->firstName;
         $lname = $this->faker->lastName;
-        $fullname = Str::lower($fname).Str::lower($lname);
         return [
-            'username' => $fullname,
             'first_name' => $fname,
             'last_name' => $lname,
             'email' => $this->faker->unique()->safeEmail,

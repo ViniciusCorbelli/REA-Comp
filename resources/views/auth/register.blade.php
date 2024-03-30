@@ -40,12 +40,6 @@
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-group">
-                                    <label for="username" class="form-label">{{ __('auth.user_name') }} <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" name="username" required>
-                                 </div>
-                              </div>
-                              <div class="col-lg-6">
-                                 <div class="form-group">
                                        <label>{{ __('auth.email') }} <span class="text-danger">*</span></label>
                                        <input class="form-control" type="email" placeholder=" " id="email"  name="email" value="{{old('email')}}" required>
                                  </div>

@@ -88,17 +88,11 @@
                                 <div class="d-flex justify-content-between">
                                     <a
                                         class="avatar-40 bg-soft-primary rounded-pill d-flex justify-content-center align-items-center">
-                                        <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M13.3571 6.45056C13.3068 5.96422 13.2543 5.45963 13.1254 4.95611C12.7741 3.75153 11.801 3.00001 10.7576 3.00001C10.1757 2.99786 9.43954 3.35644 9.0222 3.71932L5.56287 6.61697H3.75194C2.41918 6.61697 1.34751 7.6444 1.14513 9.12705C0.973161 10.5506 0.931217 13.2379 1.14513 14.8042C1.33073 16.3706 2.35416 17.383 3.75194 17.383H5.56287L9.08931 20.3236C9.45107 20.6382 10.0897 20.9989 10.6769 20.9989C10.7146 21 10.7482 21 10.7817 21C11.845 21 12.7814 20.2206 13.1327 19.0192C13.2659 18.5082 13.312 18.0293 13.3571 17.5666L13.4043 17.1082C13.5846 15.6213 13.5846 8.36908 13.4043 6.89288L13.3571 6.45056Z"
-                                                fill="currentColor"></path>
-                                            <path opacity="0.4"
-                                                d="M17.4064 6.49468C17.118 6.06953 16.5465 5.96325 16.1281 6.25849C15.7139 6.55587 15.6112 7.14206 15.8995 7.56613C16.7017 8.74816 17.1432 10.3221 17.1432 12.0001C17.1432 13.6771 16.7017 15.252 15.8995 16.4341C15.6112 16.8581 15.7139 17.4443 16.1292 17.7417C16.2844 17.8512 16.4658 17.9092 16.6524 17.9092C16.9534 17.9092 17.2344 17.7578 17.4064 17.5055C18.4193 16.0132 18.9782 14.0582 18.9782 12.0001C18.9782 9.94201 18.4193 7.98698 17.4064 6.49468Z"
-                                                fill="currentColor"></path>
-                                            <path opacity="0.4"
-                                                d="M20.5672 3.45726C20.2809 3.03319 19.7073 2.92475 19.29 3.22107C18.8758 3.51845 18.773 4.10464 19.0603 4.52871C20.4172 6.52776 21.1649 9.18169 21.1649 11.9999C21.1649 14.8192 20.4172 17.4731 19.0603 19.4722C18.773 19.8973 18.8758 20.4824 19.291 20.7798C19.4462 20.8893 19.6266 20.9473 19.8132 20.9473C20.1142 20.9473 20.3963 20.7959 20.5672 20.5436C22.1359 18.2343 22.9999 15.2003 22.9999 11.9999C22.9999 8.80164 22.1359 5.76657 20.5672 3.45726Z"
-                                                fill="currentColor"></path>
+                                        <svg fill="none" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M8.87774 6.37856C8.87774 8.24523 7.33886 9.75821 5.43887 9.75821C3.53999 9.75821 2 8.24523 2 6.37856C2 4.51298 3.53999 3 5.43887 3C7.33886 3 8.87774 4.51298 8.87774 6.37856ZM20.4933 4.89833C21.3244 4.89833 22 5.56203 22 6.37856C22 7.19618 21.3244 7.85989 20.4933 7.85989H13.9178C13.0856 7.85989 12.4101 7.19618 12.4101 6.37856C12.4101 5.56203 13.0856 4.89833 13.9178 4.89833H20.4933ZM3.50777 15.958H10.0833C10.9155 15.958 11.5911 16.6217 11.5911 17.4393C11.5911 18.2558 10.9155 18.9206 10.0833 18.9206H3.50777C2.67555 18.9206 2 18.2558 2 17.4393C2 16.6217 2.67555 15.958 3.50777 15.958ZM18.5611 20.7778C20.4611 20.7778 22 19.2648 22 17.3992C22 15.5325 20.4611 14.0196 18.5611 14.0196C16.6623 14.0196 15.1223 15.5325 15.1223 17.3992C15.1223 19.2648 16.6623 20.7778 18.5611 20.7778Z"
+                                                fill="currentColor" />
                                         </svg>
                                     </a>
                                 </div>
@@ -120,12 +114,18 @@
 
                     <div class="card-body">
 
-                        <div class="text-center">
-                            <canvas id="chart"></canvas>
-                            <h2>
-                                {{ formatSizeUnits($storage['used']) }}
-                            </h2>
-                            {{ __('global-message.used of') }} {{ formatSizeUnits($storage['total']) }}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="storage-chart" style="min-height: 250px;">
+                                    <canvas id="chart" style="display: block; box-sizing: border-box; height: 300px; width: 300px; margin: 0 auto; margin-bottom: -25%; margin-top: -15%"></canvas>
+                                    <h2 class="text-center">
+                                        {{ formatSizeUnits($storage['used']) }}
+                                    </h2>
+                                    <p class="text-center">
+                                        {{ __('global-message.used of') }} {{ formatSizeUnits($storage['total']) }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
                         <hr>
@@ -150,8 +150,10 @@
                                     </div>
                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 8px">
                                         <div class="progress-bar bg-primary" data-toggle="progress-bar"
-                                            role="progressbar" aria-valuenow="{{ $storage['total'] > 0 ? ($storage['documents']['size'] / $storage['total']) * 100 : 0 }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: {{ $storage['total'] > 0 ? ($storage['documents']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
+                                            role="progressbar"
+                                            aria-valuenow="{{ $storage['total'] > 0 ? ($storage['documents']['size'] / $storage['total']) * 100 : 0 }}"
+                                            aria-valuemin="0" aria-valuemax="100"
+                                            style="width: {{ $storage['total'] > 0 ? ($storage['documents']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
                                         </div>
                                     </div>
                                 </div>
@@ -175,8 +177,10 @@
                                     </div>
                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 8px">
                                         <div class="progress-bar bg-success" data-toggle="progress-bar"
-                                            role="progressbar" aria-valuenow="{{ $storage['total'] > 0 ? ($storage['videos']['size'] / $storage['total']) * 100 : 0 }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: {{ $storage['total'] > 0 ? ($storage['videos']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
+                                            role="progressbar"
+                                            aria-valuenow="{{ $storage['total'] > 0 ? ($storage['videos']['size'] / $storage['total']) * 100 : 0 }}"
+                                            aria-valuemin="0" aria-valuemax="100"
+                                            style="width: {{ $storage['total'] > 0 ? ($storage['videos']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
                                         </div>
                                     </div>
                                 </div>
@@ -200,23 +204,22 @@
                                     </div>
                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 8px">
                                         <div class="progress-bar bg-warning" data-toggle="progress-bar"
-                                            role="progressbar" aria-valuenow="{{ $storage['total'] > 0 ? ($storage['imagens']['size'] / $storage['total']) * 100 : 0 }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: {{ $storage['total'] > 0 ? ($storage['imagens']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
+                                            role="progressbar"
+                                            aria-valuenow="{{ $storage['total'] > 0 ? ($storage['imagens']['size'] / $storage['total']) * 100 : 0 }}"
+                                            aria-valuemin="0" aria-valuemax="100"
+                                            style="width: {{ $storage['total'] > 0 ? ($storage['imagens']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex gap-3">
                                 <span class="avatar-50 bg-soft-primary rounded">
-                                    <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path opacity="0.4"
-                                                d="M21.3309 7.44251C20.9119 7.17855 20.3969 7.1552 19.9579 7.37855L18.4759 8.12677C17.9279 8.40291 17.5879 8.96129 17.5879 9.58261V15.4161C17.5879 16.0374 17.9279 16.5948 18.4759 16.873L19.9569 17.6202C20.1579 17.7237 20.3729 17.7735 20.5879 17.7735C20.8459 17.7735 21.1019 17.7004 21.3309 17.5572C21.7499 17.2943 21.9999 16.8384 21.9999 16.339V8.66179C21.9999 8.1623 21.7499 7.70646 21.3309 7.44251Z"
-                                                fill="currentColor"></path>
-                                            <path
-                                                d="M11.9051 20H6.11304C3.69102 20 2 18.3299 2 15.9391V9.06091C2 6.66904 3.69102 5 6.11304 5H11.9051C14.3271 5 16.0181 6.66904 16.0181 9.06091V15.9391C16.0181 18.3299 14.3271 20 11.9051 20Z"
-                                                fill="currentColor"></path>
-                                        </svg>
+                                    <svg fill="none" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M8.87774 6.37856C8.87774 8.24523 7.33886 9.75821 5.43887 9.75821C3.53999 9.75821 2 8.24523 2 6.37856C2 4.51298 3.53999 3 5.43887 3C7.33886 3 8.87774 4.51298 8.87774 6.37856ZM20.4933 4.89833C21.3244 4.89833 22 5.56203 22 6.37856C22 7.19618 21.3244 7.85989 20.4933 7.85989H13.9178C13.0856 7.85989 12.4101 7.19618 12.4101 6.37856C12.4101 5.56203 13.0856 4.89833 13.9178 4.89833H20.4933ZM3.50777 15.958H10.0833C10.9155 15.958 11.5911 16.6217 11.5911 17.4393C11.5911 18.2558 10.9155 18.9206 10.0833 18.9206H3.50777C2.67555 18.9206 2 18.2558 2 17.4393C2 16.6217 2.67555 15.958 3.50777 15.958ZM18.5611 20.7778C20.4611 20.7778 22 19.2648 22 17.3992C22 15.5325 20.4611 14.0196 18.5611 14.0196C16.6623 14.0196 15.1223 15.5325 15.1223 17.3992C15.1223 19.2648 16.6623 20.7778 18.5611 20.7778Z"
+                                            fill="currentColor" />
+                                    </svg>
                                 </span>
                                 <div class="w-100 ">
                                     <div class="d-flex justify-content-between">
@@ -225,8 +228,10 @@
                                     </div>
                                     <div class="shadow-none progress bg-soft-primary w-100" style="height: 8px">
                                         <div class="progress-bar bg-danger" data-toggle="progress-bar"
-                                            role="progressbar" aria-valuenow="{{ $storage['total'] > 0 ? ($storage['others']['size'] / $storage['total']) * 100 : 0 }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="width: {{ $storage['total'] > 0 ? ($storage['others']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
+                                            role="progressbar"
+                                            aria-valuenow="{{ $storage['total'] > 0 ? ($storage['others']['size'] / $storage['total']) * 100 : 0 }}"
+                                            aria-valuemin="0" aria-valuemax="100"
+                                            style="width: {{ $storage['total'] > 0 ? ($storage['others']['size'] / $storage['total']) * 100 : 0 }}%; transition: width 2s ease 0s;">
                                         </div>
                                     </div>
                                 </div>
@@ -238,31 +243,37 @@
         </div>
     </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      
-      <script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
         const ctx = document.getElementById('chart');
-      
+    
         const data = {
-            labels: [
-                '{{ __('global-message.used') }}',
-                '{{ __('global-message.free') }}'
-            ],
             datasets: [{
                 data: [{{ $storage['used'] }}, {{ $storage['total'] - $storage['used'] }}],
                 backgroundColor: [
-                'rgb(0, 0, 255)',
-                'rgb(192, 192, 192)'
+                    'rgb(58, 87, 232)',
+                    'rgb(192, 192, 192)'
                 ],
                 hoverOffset: 2
             }]
         };
-
+    
         new Chart(ctx, {
-          type: 'doughnut',
-          data: data,
+            type: 'doughnut',
+            data: data,
+            options: {
+                rotation: -90,
+                circumference: 180,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
         });
-      </script>
-      
+    </script>
+    
 
 </x-app-layout>

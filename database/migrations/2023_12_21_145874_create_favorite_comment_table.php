@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentTable extends Migration
+class CreateFavoriteCommentTable extends Migration
 {
 
     /**
@@ -13,12 +13,9 @@ class CreateCommentTable extends Migration
      * @return void
      */
     public function up() {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->bigIncrements('id');
-
-            $table->text('message');
+        Schema::create('favority_comments', function (Blueprint $table) {
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('repository_id')->references('id')->on('repositories')->onDelete('cascade');
+            $table->foreignId('comment_id')->references('id')->on('comments')->onDelete('cascade');
 
             $table->nullableTimestamps();
         });
@@ -30,6 +27,6 @@ class CreateCommentTable extends Migration
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('favority_comments');
     }
 }

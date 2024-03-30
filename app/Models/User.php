@@ -24,7 +24,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'username',
         'first_name',
         'last_name',
         'email',
@@ -67,6 +66,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function favorities() {
         return $this->belongsToMany(Repository::class, 'favorities');
+    }
+
+    public function favoritiesComments() {
+        return $this->belongsToMany(Comment::class, 'favority_comments');
     }
 
     public function rates() {

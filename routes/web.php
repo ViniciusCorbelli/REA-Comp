@@ -12,6 +12,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FavorityCommentController;
 use App\Http\Controllers\FavorityController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
@@ -109,13 +110,18 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Repository Module
     Route::resource('repositories', RepositoryController::class);
+    Route::get('admin-repositories', [RepositoryController::class, 'indexAdmin'])->name('admin.repositories.index');
 
     Route::post('file', [FileUploadController::class, 'uploadFile'])->name('fileUpload');
     Route::post('file/{id}', [FileUploadController::class, 'uploadFile'])->name('fileUploadRepository');
     Route::delete('file/{id}', [FileUploadController::class, 'deleteFile'])->name('fileRemove');
 
     // Favority Module
-    Route::resource('favorities', FavorityController::class);
+    Route::get('favorities', [FavorityController::class, 'index'])->name('favorities.index');
+    Route::post('favorities', [FavorityController::class, 'store'])->name('favorities.store');
+
+    // Favority Comment Module
+    Route::post('favoritiesComments', [FavorityCommentController::class, 'store'])->name('favorities.comment.store');
 
     // Rate Module
     Route::resource('ratings', RateController::class);

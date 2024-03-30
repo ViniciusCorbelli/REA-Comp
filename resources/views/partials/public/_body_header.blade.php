@@ -1,6 +1,6 @@
 <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar">
     <div class="container-fluid navbar-inner">
-        <a href="{{ route('dashboard') }}" class="navbar-brand">
+        <a href="{{ route('index') }}" class="navbar-brand">
             <svg width="30" class="text-primary" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="-0.757324" y="19.2427" width="28" height="4" rx="2"
                     transform="rotate(-45 -0.757324 19.2427)" fill="currentColor" />
@@ -33,18 +33,32 @@
                     </li>
                 @else
                     <li class="nav-item dropdown">
-                        <a class="nav-link py-0 d-flex align-items-center" href="javascript:void(0)" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%;height: 100%;">
+                        <a class="nav-link py-0 d-flex align-items-center" href="javascript:void(0)" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="width: 100%;height: 100%;">
                             <div class="caption ms-3 d-none d-md-block ">
                                 <h6 class="mb-0 caption-title">{{ auth()->user()->full_name }}</h6>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item"
-                                    href="{{ route('users.show', auth()->id()) }}">{{ __('auth.profile') }}</a></li>
 
-                            <li><a class="dropdown-item"
-                                    href="{{ route('favorities.index') }}">{{ __('favorities.title') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>
+
+                            @can('viewAny', App\Models\Repository::class)
+                                <li><a class="dropdown-item"
+                                        href="{{ route('repositories.index') }}">{{ __('repositories.title') }}</a></li>
+                            @endcan
+
+                            @can('viewAny', App\Models\Favority::class)
+                                <li><a class="dropdown-item"
+                                        href="{{ route('favorities.index') }}">{{ __('favorities.title') }}</a></li>
+                            @endcan
+
+                            @can('view', Auth::user())
+                                <li><a class="dropdown-item"
+                                        href="{{ route('users.show', auth()->id()) }}">{{ __('auth.profile') }}</a></li>
+                            @endcan
+
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -52,8 +66,7 @@
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a href="javascript:void(0)" class="dropdown-item"
-                                        onclick="event.preventDefault();
-                this.closest('form').submit();">
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
                                         {{ __('auth.logout') }}
                                     </a>
                                 </form>

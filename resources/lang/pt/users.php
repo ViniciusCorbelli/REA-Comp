@@ -41,7 +41,8 @@ return [
     'zipcode' => 'CEP',
     'email' => 'E-mail',
     'security' => 'Segurança',
-    'user_name' => 'Nome de Usuário',
     'password' => 'Senha',
-    'repeat_password' => 'Repita a Senha'
+    'repeat_password' => 'Repita a Senha',
+    'joined' => 'Cadastrou',
+    'about_user' => 'Sobre o usuário'
 ];

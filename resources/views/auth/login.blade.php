@@ -32,9 +32,16 @@
                               </div>
                               <div class="col-lg-12">
                                  <div class="form-group">
-                                    <label for="password" class="form-label">{{ __('auth.password') }}</label>
-                                    <input class="form-control" type="password" placeholder="********"  name="password" required autocomplete="current-password">
-                                 </div>
+                                    <label class="form-label" for="pass">{{ __('auth.password') }}:</label>
+                                    <div class="input-group">
+                                       <input class="form-control password" type="password" placeholder="********"  name="password" required autocomplete="current-password">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" style="width: 100%;height: 100%;">
+                                                <i class="fa-solid fa-eye fa-lg" onclick="hideShowPassword(this, 'password')"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                               </div>
                               <div class="col-lg-6">
                                  <div class="form-check mb-3">

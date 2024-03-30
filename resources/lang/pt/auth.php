@@ -31,7 +31,6 @@ return [
     'full_name' => 'Nome Completo',
     'first_name' => 'Nome',
     'last_name' => 'Sobrenome',
-    'user_name' => 'Nome de Usuário',
     'password' => 'Senha',
     'confirm_password' => 'Confirmar Senha',
     'sign_up' => 'Registrar',

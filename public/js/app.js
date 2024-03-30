@@ -499,3 +499,14 @@ window.addEventListener('load', function() {
         }, false);
       });
 }, false);
+
+function hideShowPassword(icon, input) {
+    const elementInput = document.querySelector("." + input);
+
+    const type = elementInput.getAttribute("type") === "password" ? "text" : "password";
+    elementInput.setAttribute("type", type);
+
+    const classList = elementInput.getAttribute("type") === "password" ? "fa-eye" : "fa-eye-slash";
+    icon.classList = "fa-solid " + classList;
+    icon.classList = "fa-solid " + classList;
+}

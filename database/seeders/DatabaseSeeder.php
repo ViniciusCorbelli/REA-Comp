@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,8 +15,15 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
         ]);
-        \App\Models\User::factory(40)->create();
+        
+        \App\Models\User::factory(50)->create();
         \App\Models\Topic::factory(50)->create();
         \App\Models\Type::factory(50)->create();
+        \App\Models\Repository::factory(50)->create();
+        \App\Models\Visit::factory(50)->create();
+        \App\Models\Comment::factory(50)->create();
+        \App\Models\FavorityComment::factory(50)->create();
+        \App\Models\Link::factory(50)->create();
+        \App\Models\Rate::factory(50)->create();
     }
 }

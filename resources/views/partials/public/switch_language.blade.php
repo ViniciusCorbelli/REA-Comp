@@ -27,7 +27,7 @@
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
-                    "X-CSRF-Token": token
+                    'X-CSRF-Token': token
                 }
             })
             .then(response => {

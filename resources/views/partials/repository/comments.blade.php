@@ -2,13 +2,9 @@
     <div class="card shadow-none bg-transparent border">
         <div class="card-body">
             <div class="d-flex flex-sm-nowrap flex-wrap">
-                <div>
-                    <img class="img-fluid object-contain avatar-120 rounded" src="{{ asset('images/avatars/01.png') }}"
-                        loading="lazy">
-                </div>
                 <div class="ms-0 ms-sm-3" style="width: 100%">
                     <div class="d-flex justify-content-between align-items-center my-2 my-lg-0">
-                        <h6 class="mb-0">{{ $comment->user->username }}</h6>
+                        <h6 class="mb-0">{{ $comment->user->first_name . ' ' . $comment->user->last_name }}</h6>
                         @auth
                             <div style="display: ruby;">
                                 @can('update', $comment)
@@ -35,6 +31,56 @@
                     <small class="text-primary">{{ __('global-message.created_on') }}
                         {{ date('d F, Y', strtotime($comment->created_at)) }}</small>
                     <p class="mt-2 mb-0" id="comment-{{ $comment->id }}">{{ $comment->message }}</p>
+
+
+                    @auth
+                        <a class="btn btn-soft-primary btn-icon rounded-pill"
+                            onclick="favorityComment({{ $comment->id }})">
+                            <i class="{{ Auth::user()->favoritiesComments()->wherePivot('comment_id', $comment->id)->exists()? 'fa-solid fa-heart': 'fa-regular fa-heart' }}"
+                                id="favorityButton_{{ $comment->id }}"></i>
+                            <small id="favorityCount_{{ $comment->id }}">{{ $comment->favorities()->count() }}</small>
+                        </a>
+
+                        <script>
+                            function favorityComment(id) {
+                                const token = '{{ csrf_token() }}';
+                                fetch('{{ route('favorities.comment.store') }}', {
+                                        method: 'post',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-Token': token
+                                        },
+                                        body: JSON.stringify({
+                                            _token: token,
+                                            comment_id: id,
+                                        })
+                                    })
+                                    .then(response => {
+                                        return response.json();
+                                    })
+                                    .then(json => {
+                                        const favorityButton = document.querySelector('#favorityButton_' + id);
+                                        const favorityCountElement = document.querySelector('#favorityCount_' + id);
+
+                                        if (json.action == 'create') {
+                                            favorityButton.classList = 'fa-solid fa-heart';
+                                            favorityCountElement.innerText = parseInt(favorityCountElement.innerText) + 1;
+                                        } else {
+                                            favorityButton.classList = 'fa-regular fa-heart';
+                                            favorityCountElement.innerText = parseInt(favorityCountElement.innerText) - 1;
+                                        }
+                                    })
+                                    .catch(error => console.error(error));
+                            }
+                        </script>
+                    @else
+                        <a class="rounded-pill">
+                            <i class="fa-regular fa-heart"></i>
+                            <small>{{ $comment->favorities()->count() }}</small>
+                        </a>
+
+                    @endauth
+
                 </div>
             </div>
         </div>
@@ -45,9 +91,8 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="form-group">
-                <label for="message" class="form-label">{{ __('comments.title') }}<span
-                        class="text-danger">*</span></label>
-                <textarea class="form-control" rows="5" id="message"></textarea>
+                <label for="message" class="form-label">{{ __('comments.title') }}</label>
+                <textarea class="form-control" rows="2" id="message"></textarea>
             </div>
         </div>
         <div class="d-flex">
@@ -63,7 +108,7 @@
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
-                    "X-CSRF-Token": token
+                    'X-CSRF-Token': token
                 },
                 body: JSON.stringify({
                     _token: token,
@@ -110,7 +155,7 @@
                 method: 'put',
                 headers: {
                     'Content-Type': 'application/json',
-                    "X-CSRF-Token": token
+                    'X-CSRF-Token': token
                 },
                 body: JSON.stringify({
                     _token: token,
@@ -133,7 +178,7 @@
                 method: 'delete',
                 headers: {
                     'Content-Type': 'application/json',
-                    "X-CSRF-Token": token
+                    'X-CSRF-Token': token
                 },
                 body: JSON.stringify({
                     _token: token,

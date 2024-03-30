@@ -11,8 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
 
     public function index(Request $request) {
         $topics = Topic::orderBy('name')->pluck('name', 'id');
@@ -22,18 +21,29 @@ class HomeController extends Controller
     }
 
     public function search(Request $request) {
+        $searchTerm = $request->input('q');
+
         $repositories = Repository::query()
             ->selectRaw('repositories.id, repositories.title, repositories.description, repositories.topic_id, repositories.created_at, AVG(rates.score) as score, COUNT(comments.id) as comments, COUNT(favorities.repository_id) as favorities')
-            ->when($request->input('q'), function ($query, $searchTerm) {
-                return $query->whereFullText(['title', 'description'], $searchTerm);
+            ->when($searchTerm, function ($query, $searchTerm) {
+                return $query->where(function ($query) use ($searchTerm) {
+                    $searchTerm = strtolower($searchTerm);
+                    $query->whereRaw('LOWER(title) LIKE ?', ["%{$searchTerm}%"])
+                        ->orWhereRaw('LOWER(description) LIKE ?', ["%{$searchTerm}%"]);
+                });
             })
-            ->where('topic_id', $request->input('topic_id'))
+            ->when($request->filled('topic_id'), function ($query) use ($request) {
+                $query->where('topic_id', $request->input('topic_id'));
+            })
+            ->when($request->filled('type_id'), function ($query) use ($request) {
+                $query->where('type_id', $request->input('type_id'));
+            })
             ->with('topic')
             ->leftJoin('rates', 'repositories.id', '=', 'rates.repository_id')
             ->leftJoin('comments', 'repositories.id', '=', 'comments.repository_id')
             ->leftJoin('favorities', 'repositories.id', '=', 'favorities.repository_id')
             ->groupBy('repositories.id', 'repositories.title', 'repositories.description', 'repositories.topic_id', 'repositories.created_at')
-            ->orderBy($request->input('order'), 'desc')
+            ->orderBy($request->input('order') ?? 'created_at', 'desc')
             ->paginate(12);
 
         return response()->json(

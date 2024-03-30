@@ -41,7 +41,8 @@ return [
     'zipcode' => 'Zip Code',
     'email' => 'Email',
     'security' => 'Security',
-    'user_name' => 'User Name',
     'password' => 'Password',
-    'repeat_password' => 'Repeat Password'
+    'repeat_password' => 'Repeat Password',
+    'joined' => 'Joined',
+    'about_user' => 'About User'
 ];

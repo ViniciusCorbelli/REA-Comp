@@ -22492,3 +22492,20 @@ input[type=file]::file-selector-button:hover {
   color: #deb217!important;
   cursor: default!important;
 }
+.rated-user-unchecked {
+  color: #ccc!important;
+  cursor: default!important;
+}
+
+#input > * {
+  height: 1.3em;
+  float: left;
+}
+
+#input img {
+  cursor: pointer;
+}
+
+option[value=""][disabled] {
+  display: none;
+}

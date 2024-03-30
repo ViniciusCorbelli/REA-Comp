@@ -29,14 +29,25 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbar-2">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-start">
-                        <li class="nav-item">
-                            {{ Form::select('topic_id', $topics, old('topic_id'), ['class' => 'form-control', 'id' => 'topic_id']) }}
+                        <li class="nav-item col-4">
+                            <select name="topic_id" class="form-control" id="topic_id">
+                                <option value="" disabled selected>Selecione um Tópico</option>
+                                @foreach($topics as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
                         </li>
-                        <li class="nav-item">
-                            {{ Form::select('type_id', $types, old('type_id'), ['class' => 'form-control', 'id' => 'type_id']) }}
+                        <li class="nav-item col-4">
+                            <select name="type_id" class="form-control" id="type_id">
+                                <option value="" disabled selected>Selecione um Tipo</option>
+                                @foreach($types as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                            </select>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item col-4">
                             <select class="form-control" id="order">
+                                <option value="" disabled selected>Ordenação</option>
                                 <option value="score">{{ __('index.order.score') }}</option>
                                 <option value="comments">{{ __('index.order.comments') }}</option>
                                 <option value="favorities">{{ __('index.order.favorities') }}</option>
@@ -73,7 +84,7 @@
                     method: 'get',
                     headers: {
                         'Content-Type': 'application/json',
-                        "X-CSRF-Token": token
+                        'X-CSRF-Token': token
                     }
                 })
                 .then(response => {
@@ -123,7 +134,7 @@
             var dateParts = repository.created_at.split("-");
             var jsDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0, 2));
 
-            const htmlToAppend = `<div class="col">
+            const htmlToAppend = `<div class="col-3">
                 <div class="card">
                     <div class="card-body card-thumbnail">
                         <div class="d-flex align-items-center iq-incoming-blogs gap-3">
@@ -140,11 +151,9 @@
                                 <div class="form-group row">
                                     <div class="col">
                                         <div class="rate">
-                                            <label title="text" class="` + (repository.score >= 5 ? 'rated-user' : '') + `"></label>
-                                            <label title="text" class="` + (repository.score >= 4 ? 'rated-user' : '') + `"></label>
-                                            <label title="text" class="` + (repository.score >= 3 ? 'rated-user' : '') + `"></label>
-                                            <label title="text" class="` + (repository.score >= 2 ? 'rated-user' : '') + `"></label>
-                                            <label title="text" class="` + (repository.score >= 1 ? 'rated-user' : '') + `"></label>
+                                            @for ($i = 5; $i > 0; $i--)
+                                                <label title="text" class="` + (repository.score >= {{  $i }} ? 'rated-user' : 'rated-user-unchecked') + `"></label>
+                                            @endfor
                                         </div>
                                     </div>
                                 </div>

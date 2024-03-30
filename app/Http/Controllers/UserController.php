@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\DataTables\UsersDataTable;
 use App\Models\User;
-use Spatie\Permission\Models\Role;
 use App\Http\Requests\UserRequest;
 
 class UserController extends Controller {
@@ -43,8 +42,6 @@ class UserController extends Controller {
     public function store(UserRequest $request) {
         $request['password'] = bcrypt($request->password);
 
-        $request['username'] = $request->username ?? stristr($request->email, "@", true) . rand(100, 1000);
-
         User::create($request->all());
 
         return redirect()->route('users.index')->withSuccess(__('users.store'));
@@ -60,7 +57,7 @@ class UserController extends Controller {
         $id = $user->id;
         $data = User::findOrFail($id);
 
-        return view('users.form', compact('data', 'id'));
+        return view('users.show', compact('data', 'id'));
     }
 
     /**

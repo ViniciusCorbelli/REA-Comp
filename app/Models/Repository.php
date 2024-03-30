@@ -65,6 +65,10 @@ class Repository extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class);
     }
 
+    public function favorities() {
+        return $this->hasMany(Favority::class);
+    }
+
     public function visits() {
         return $this->hasMany(Visit::class);
     }

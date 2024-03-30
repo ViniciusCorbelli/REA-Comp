@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class Comment extends Authenticatable implements MustVerifyEmail
+class FavorityComment extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -18,9 +18,8 @@ class Comment extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'message',
         'user_id',
-        'repository_id',
+        'comment_id',
     ];
 
     /**
@@ -28,24 +27,22 @@ class Comment extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [
+    ];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [];
+    protected $casts = [
+    ];
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function reposity() {
+        return $this->hasOne(Repository::class);
     }
 
-    public function repository() {
-        return $this->belongsTo(Repository::class);
-    }
-
-    public function favorities() {
-        return $this->hasMany(FavorityComment::class);
+    public function comment() {
+        return $this->hasOne(Comment::class);
     }
 }

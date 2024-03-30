@@ -67,4 +67,15 @@ class RepositoryPolicy {
     {
         return $user->id == $model->user_id || $user->isAdministrator();
     }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function viewAll(User $user) {
+        return $user->isAdministrator();
+    }
 }

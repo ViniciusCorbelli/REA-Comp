@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\RepositoryDataTable;
 use App\Http\Requests\RepositoryRequest;
 use App\Models\Topic;
 use App\Models\Repository;
@@ -14,6 +15,19 @@ class RepositoryController extends Controller {
 
     public function __construct() {
         $this->authorizeResource(Repository::class);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexAdmin(RepositoryDataTable $dataTable) {
+        $this->authorize('viewAll', Repository::class);
+
+        $pageTitle = trans('global-message.list_form_title', ['form' => trans('repositories.title')]);
+        $assets = ['data-table'];
+        return $dataTable->render('global.datatable', compact('pageTitle', 'assets'));
     }
 
     /**
